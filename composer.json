@@ -1,0 +1,27 @@
+{
+	"keywords" : [
+		"typed",
+		"php",
+		"primitives",
+		"value objects"
+	],
+	"autoload" : {
+		"psr-4" : {
+			"Mcustiel\\TypedPhp\\" : "src"
+		}
+	},
+	"autoload-dev": {
+	   "psr-4": {
+	       "Mcustiel\\TypedPhp\\Test\\" : "tests/unit"
+	   }
+	},
+	"name" : "mcustiel/TypedPhp",
+	"type" : "library",
+	"description" : "Collection of value objects for PHP primitives",
+	"require" : {
+		"php" : ">=5.5"
+	},
+	"require-dev" : {
+        "phpunit/phpunit" : "~5.0"
+    }
+}

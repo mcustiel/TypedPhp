@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./bootstrap.php" colors="true"
+	convertErrorsToExceptions="true" convertNoticesToExceptions="false"
+	convertWarningsToExceptions="false">
+	<testsuite name="TypedPhpUnitTests">
+        <directory>./unit</directory>
+    </testsuite>
+	<php>
+		<ini name="display_startup_errors" value="1" />
+		<ini name="display_errors" value="1" />
+		<ini name="error_reporting" value="E_ALL" />
+	</php>
+</phpunit>
