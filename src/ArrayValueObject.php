@@ -39,8 +39,5 @@ abstract class ArrayValueObject extends \ArrayObject implements Primitive
      * @param array $array
      * @param string $type
      */
-    protected function checkArrayTypes(array $array, $type)
-    {
-        return;
-    }
+    abstract protected function checkArrayTypes(array $array, $type);
 }
