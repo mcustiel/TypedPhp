@@ -19,7 +19,7 @@ class PrimitivesArray extends ArrayValueObject
         }
 
         foreach ($array as $arrayItem) {
-            if ($this->isOfInternalPhpType($arrayItem, $type)) {
+            if (!$this->isOfInternalPhpType($arrayItem, $type)) {
                 throw new \InvalidArgumentException(
                     'Expected an array of ' . $type . ', but one element is of type ' . gettype($arrayItem)
                 );

@@ -1,26 +1,17 @@
 <?php
 namespace Mcustiel\TypedPhp\Traits\Validation;
 
+use Mcustiel\TypedPhp\Extra\PhpTypes;
+
 trait PhpTypeChecker
 {
-    const PHP_TYPES = [
-        'boolean',
-        'integer',
-        'double',
-        'string',
-        'array',
-        'object',
-        'resource',
-        'NULL',
-    ];
-
     /**
      * @param string $type
      * @return boolean
      */
     private function isPhpType($type)
     {
-        return in_array($type, self::PHP_TYPES);
+        return in_array($type, PhpTypes::PHP_TYPES);
     }
 
     /**

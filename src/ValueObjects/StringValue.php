@@ -24,7 +24,7 @@ class StringValue extends PrimitiveValueObject
     }
 
     /**
-     * @return \Mcustiel\TypedPhp\DoubleValue
+     * @return \Mcustiel\TypedPhp\ValueObjects\DoubleValue
      */
     public function toDoubleValue()
     {
@@ -32,7 +32,7 @@ class StringValue extends PrimitiveValueObject
     }
 
     /**
-     * @return \Mcustiel\TypedPhp\IntegerValue
+     * @return \Mcustiel\TypedPhp\ValueObjects\IntegerValue
      */
     public function toIntegerValue()
     {
@@ -51,7 +51,7 @@ class StringValue extends PrimitiveValueObject
     }
 
     /**
-     * @return \Mcustiel\TypedPhp\StringValue
+     * @return \Mcustiel\TypedPhp\ValueObjects\StringValue
      */
     public function reverse()
     {
@@ -59,9 +59,9 @@ class StringValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\StringValue $search
-     * @param \Mcustiel\TypedPhp\StringValue $replace
-     * @return \Mcustiel\TypedPhp\StringValue
+     * @param \Mcustiel\TypedPhp\ValueObjects\StringValue $search
+     * @param \Mcustiel\TypedPhp\ValueObjects\StringValue $replace
+     * @return \Mcustiel\TypedPhp\ValueObjects\StringValue
      */
     public function replace(StringValue $search, StringValue $replace)
     {
@@ -69,9 +69,9 @@ class StringValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\StringValue $glue
+     * @param \Mcustiel\TypedPhp\ValueObjects\StringValue $glue
      * @param \Mcustiel\TypedPhp\ArrayValueObject $parts
-     * @return \Mcustiel\TypedPhp\StringValue
+     * @return \Mcustiel\TypedPhp\ValueObjects\StringValue
      */
     public static function implode(StringValue $glue, ArrayValueObject $parts)
     {
@@ -79,8 +79,8 @@ class StringValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\StringValue $separator
-     * @return \Mcustiel\TypedPhp\StringArray
+     * @param \Mcustiel\TypedPhp\ValueObjects\StringValue $separator
+     * @return \Mcustiel\TypedPhp\ValueObjects\Multiple\StringArray
      */
     public function explode(StringValue $separator)
     {

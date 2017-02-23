@@ -12,7 +12,7 @@ abstract class ArrayValueObject extends \ArrayObject implements Primitive
      * @param string $type
      * @param array $value
      */
-    protected function __construct($type, array $value)
+    public function __construct($type, array $value)
     {
         $this->type = $type;
         $this->validate($value);

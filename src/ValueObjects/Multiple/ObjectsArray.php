@@ -2,6 +2,7 @@
 namespace Mcustiel\TypedPhp\ValueObjects\Multiple;
 
 use Mcustiel\TypedPhp\ArrayValueObject;
+use Mcustiel\TypedPhp\Traits\Validation\InstanceOfChecker;
 
 class ObjectsArray extends ArrayValueObject
 {
@@ -18,7 +19,11 @@ class ObjectsArray extends ArrayValueObject
         }
 
         foreach ($array as $arrayItem) {
-            $this->isInstanceOf($arrayItem, $type);
+            if (!$this->isInstanceOf($arrayItem, $type)) {
+                throw new \InvalidArgumentException(
+                    'Expected an array of ' . $type . ', but one element is of type ' . get_class($arrayItem)
+                );
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ class DoubleValue extends PrimitiveValueObject
     }
 
     /**
-     * @return \Mcustiel\TypedPhp\StringValue
+     * @return \Mcustiel\TypedPhp\ValueObjects\StringValue
      */
     public function toStringValue()
     {
@@ -22,7 +22,7 @@ class DoubleValue extends PrimitiveValueObject
     }
 
     /**
-     * @return \Mcustiel\TypedPhp\IntegerValue
+     * @return \Mcustiel\TypedPhp\ValueObjects\IntegerValue
      */
     public function toIntegerValue()
     {
@@ -30,8 +30,8 @@ class DoubleValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\DoubleValue $value
-     * @return \Mcustiel\TypedPhp\DoubleValue
+     * @param \Mcustiel\TypedPhp\ValueObjects\DoubleValue $value
+     * @return \Mcustiel\TypedPhp\ValueObjects\DoubleValue
      */
     public function add(DoubleValue $value)
     {
@@ -39,8 +39,8 @@ class DoubleValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\DoubleValue $value
-     * @return \Mcustiel\TypedPhp\DoubleValue
+     * @param \Mcustiel\TypedPhp\ValueObjects\DoubleValue $value
+     * @return \Mcustiel\TypedPhp\ValueObjects\DoubleValue
      */
     public function substract(DoubleValue $value)
     {
@@ -48,8 +48,8 @@ class DoubleValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\DoubleValue $value
-     * @return \Mcustiel\TypedPhp\DoubleValue
+     * @param \Mcustiel\TypedPhp\ValueObjects\DoubleValue $value
+     * @return \Mcustiel\TypedPhp\ValueObjects\DoubleValue
      */
     public function multiply(DoubleValue $value)
     {
@@ -57,8 +57,8 @@ class DoubleValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\DoubleValue $value
-     * @return \Mcustiel\TypedPhp\DoubleValue
+     * @param \Mcustiel\TypedPhp\ValueObjects\DoubleValue $value
+     * @return \Mcustiel\TypedPhp\ValueObjects\DoubleValue
      */
     public function divide(DoubleValue $value)
     {
