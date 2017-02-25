@@ -4,27 +4,13 @@ namespace Mcustiel\TypedPhp;
 abstract class ArrayValueObject extends \ArrayObject implements Primitive
 {
     /**
-     * @var string
-     */
-    private $type;
-
-    /**
      * @param string $type
      * @param array $value
      */
-    public function __construct($type, array $value)
+    public function __construct(array $value)
     {
-        $this->type = $type;
-        $this->validate($value);
+        $this->checkArrayTypes($value);
         parent::__construct($value);
-    }
-
-    /**
-     * @param array $value
-     */
-    protected function validate(array $value)
-    {
-        $this->checkArrayTypes($value, $this->type);
     }
 
     /**
@@ -36,8 +22,32 @@ abstract class ArrayValueObject extends \ArrayObject implements Primitive
     }
 
     /**
+     * {@inheritDoc}
+     * @see \ArrayObject::offsetSet()
+     */
+    public function offsetSet($index, $newval)
+    {
+        $this->validate($newval);
+        parent::offsetSet($index, $newval);
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @throws \InvalidArgumentException
+     */
+    abstract protected function validate($value);
+
+    /**
      * @param array $array
      * @param string $type
+     *
+     * @throws \InvalidArgumentException
      */
-    abstract protected function checkArrayTypes(array $array, $type);
+    protected function checkArrayTypes(array $array)
+    {
+        foreach ($array as $element) {
+            $this->validate($element);
+        }
+    }
 }

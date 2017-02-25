@@ -3,27 +3,43 @@ namespace Mcustiel\TypedPhp\ValueObjects\Multiple;
 
 use Mcustiel\TypedPhp\ArrayValueObject;
 use Mcustiel\TypedPhp\Traits\Validation\InstanceOfChecker;
+use Mcustiel\TypedPhp\Traits\Validation\PhpTypeChecker;
 
 class ObjectsArray extends ArrayValueObject
 {
-    use InstanceOfChecker;
+    use InstanceOfChecker, PhpTypeChecker;
+
+    /**
+     * @var string
+     */
+    private $className;
+
+    /**
+     * @param string $className
+     * @param array $array
+     */
+    public function __construct($className, array $array)
+    {
+        if (!class_exists($className)) {
+            throw new \Exception('Expected a class name, got ' . $className);
+        }
+        $this->className = $className;
+        parent::__construct($array);
+    }
 
     /**
      * {@inheritDoc}
      * @see \Mcustiel\TypedPhp\ArrayValueObject::checkArrayTypes()
      */
-    protected function checkArrayTypes(array $array, $type)
+    protected function validate($value)
     {
-        if (!class_exists($type)) {
-            throw new \Exception('Expected a class name, got ' . $type);
-        }
-
-        foreach ($array as $arrayItem) {
-            if (!$this->isInstanceOf($arrayItem, $type)) {
-                throw new \InvalidArgumentException(
-                    'Expected an array of ' . $type . ', but one element is of type ' . get_class($arrayItem)
-                );
-            }
+        if (!$this->isInstanceOf($value, $this->className)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Trying to save an element of an invalid type in an array of %s ',
+                    $this->className
+                )
+            );
         }
     }
 }

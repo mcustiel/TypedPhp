@@ -1,5 +1,5 @@
 <?php
-namespace Mcustiel\TypedPhp\Test;
+namespace Mcustiel\TypedPhp\Test\ValueObjects;
 
 use Mcustiel\TypedPhp\ValueObjects\IntegerValue;
 use Mcustiel\TypedPhp\ValueObjects\DoubleValue;
