@@ -1,7 +1,7 @@
 <?php
-namespace Mcustiel\TypedPhp\ValueObjects\Multiple;
+namespace Mcustiel\TypedPhp\Types\Multiple\Immutable;
 
-class StringArray extends PrimitivesArray
+class ImmutableStringArray extends ImmutablePrimitivesArray
 {
     /**
      * @param string[] $value

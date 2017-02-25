@@ -1,8 +1,8 @@
 <?php
-namespace Mcustiel\TypedPhp\Test\ValueObjects;
+namespace Mcustiel\TypedPhp\Test\Types;
 
-use Mcustiel\TypedPhp\ValueObjects\DoubleValue;
-use Mcustiel\TypedPhp\ValueObjects\IntegerValue;
+use Mcustiel\TypedPhp\Types\DoubleValue;
+use Mcustiel\TypedPhp\Types\IntegerValue;
 
 class DoubleValueTest extends \PHPUnit_Framework_TestCase
 {

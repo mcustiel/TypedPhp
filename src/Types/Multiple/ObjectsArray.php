@@ -1,5 +1,5 @@
 <?php
-namespace Mcustiel\TypedPhp\ValueObjects\Multiple;
+namespace Mcustiel\TypedPhp\Types\Multiple;
 
 use Mcustiel\TypedPhp\ArrayValueObject;
 use Mcustiel\TypedPhp\Traits\Validation\InstanceOfChecker;

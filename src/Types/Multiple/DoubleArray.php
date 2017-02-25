@@ -1,5 +1,5 @@
 <?php
-namespace Mcustiel\TypedPhp\ValueObjects\Multiple;
+namespace Mcustiel\TypedPhp\Types\Multiple;
 
 class DoubleArray extends PrimitivesArray
 {

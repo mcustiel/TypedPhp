@@ -1,9 +1,9 @@
 <?php
-namespace Mcustiel\TypedPhp\Test\ValueObjects\Multiple;
+namespace Mcustiel\TypedPhp\Test\Types\Multiple;
 
-use Mcustiel\TypedPhp\ValueObjects\Multiple\ObjectsArray;
+use Mcustiel\TypedPhp\Types\Multiple\ObjectsArray;
 use Mcustiel\TypedPhp\Test\Fixtures\Foo;
-use Mcustiel\TypedPhp\ValueObjects\StringValue;
+use Mcustiel\TypedPhp\Types\StringValue;
 use Mcustiel\TypedPhp\Test\Fixtures\Bar;
 
 class ObjectsArrayTest extends \PHPUnit_Framework_TestCase

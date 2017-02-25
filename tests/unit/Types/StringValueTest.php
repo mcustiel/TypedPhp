@@ -1,11 +1,11 @@
 <?php
-namespace Mcustiel\TypedPhp\Test\ValueObjects;
+namespace Mcustiel\TypedPhp\Test\Types;
 
-use Mcustiel\TypedPhp\ValueObjects\StringValue;
-use Mcustiel\TypedPhp\ValueObjects\DoubleValue;
-use Mcustiel\TypedPhp\ValueObjects\IntegerValue;
+use Mcustiel\TypedPhp\Types\StringValue;
+use Mcustiel\TypedPhp\Types\DoubleValue;
+use Mcustiel\TypedPhp\Types\IntegerValue;
 use Mcustiel\TypedPhp\ArrayValueObject;
-use Mcustiel\TypedPhp\ValueObjects\Multiple\StringArray;
+use Mcustiel\TypedPhp\Types\Multiple\StringArray;
 
 class StringValueTest extends \PHPUnit_Framework_TestCase
 {

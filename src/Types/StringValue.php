@@ -1,8 +1,8 @@
 <?php
-namespace Mcustiel\TypedPhp\ValueObjects;
+namespace Mcustiel\TypedPhp\Types;
 
 use Mcustiel\TypedPhp\PrimitiveValueObject;
-use Mcustiel\TypedPhp\ValueObjects\Multiple\StringArray;
+use Mcustiel\TypedPhp\Types\Multiple\StringArray;
 use Mcustiel\TypedPhp\ArrayValueObject;
 
 class StringValue extends PrimitiveValueObject
@@ -24,7 +24,7 @@ class StringValue extends PrimitiveValueObject
     }
 
     /**
-     * @return \Mcustiel\TypedPhp\ValueObjects\DoubleValue
+     * @return \Mcustiel\TypedPhp\Types\DoubleValue
      */
     public function toDoubleValue()
     {
@@ -32,7 +32,7 @@ class StringValue extends PrimitiveValueObject
     }
 
     /**
-     * @return \Mcustiel\TypedPhp\ValueObjects\IntegerValue
+     * @return \Mcustiel\TypedPhp\Types\IntegerValue
      */
     public function toIntegerValue()
     {
@@ -51,7 +51,7 @@ class StringValue extends PrimitiveValueObject
     }
 
     /**
-     * @return \Mcustiel\TypedPhp\ValueObjects\StringValue
+     * @return \Mcustiel\TypedPhp\Types\StringValue
      */
     public function reverse()
     {
@@ -59,9 +59,9 @@ class StringValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\ValueObjects\StringValue $search
-     * @param \Mcustiel\TypedPhp\ValueObjects\StringValue $replace
-     * @return \Mcustiel\TypedPhp\ValueObjects\StringValue
+     * @param \Mcustiel\TypedPhp\Types\StringValue $search
+     * @param \Mcustiel\TypedPhp\Types\StringValue $replace
+     * @return \Mcustiel\TypedPhp\Types\StringValue
      */
     public function replace(StringValue $search, StringValue $replace)
     {
@@ -69,9 +69,9 @@ class StringValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\ValueObjects\StringValue $glue
+     * @param \Mcustiel\TypedPhp\Types\StringValue $glue
      * @param \Mcustiel\TypedPhp\ArrayValueObject $parts
-     * @return \Mcustiel\TypedPhp\ValueObjects\StringValue
+     * @return \Mcustiel\TypedPhp\Types\StringValue
      */
     public static function implode(StringValue $glue, ArrayValueObject $parts)
     {
@@ -79,8 +79,8 @@ class StringValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\ValueObjects\StringValue $separator
-     * @return \Mcustiel\TypedPhp\ValueObjects\Multiple\StringArray
+     * @param \Mcustiel\TypedPhp\Types\StringValue $separator
+     * @return \Mcustiel\TypedPhp\Types\Multiple\StringArray
      */
     public function explode(StringValue $separator)
     {

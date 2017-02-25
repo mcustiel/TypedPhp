@@ -1,5 +1,5 @@
 <?php
-namespace Mcustiel\TypedPhp\ValueObjects;
+namespace Mcustiel\TypedPhp\Types;
 
 use Mcustiel\TypedPhp\PrimitiveValueObject;
 
@@ -14,7 +14,7 @@ class DoubleValue extends PrimitiveValueObject
     }
 
     /**
-     * @return \Mcustiel\TypedPhp\ValueObjects\StringValue
+     * @return \Mcustiel\TypedPhp\Types\StringValue
      */
     public function toStringValue()
     {
@@ -22,7 +22,7 @@ class DoubleValue extends PrimitiveValueObject
     }
 
     /**
-     * @return \Mcustiel\TypedPhp\ValueObjects\IntegerValue
+     * @return \Mcustiel\TypedPhp\Types\IntegerValue
      */
     public function toIntegerValue()
     {
@@ -30,8 +30,8 @@ class DoubleValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\ValueObjects\DoubleValue $value
-     * @return \Mcustiel\TypedPhp\ValueObjects\DoubleValue
+     * @param \Mcustiel\TypedPhp\Types\DoubleValue $value
+     * @return \Mcustiel\TypedPhp\Types\DoubleValue
      */
     public function add(DoubleValue $value)
     {
@@ -39,8 +39,8 @@ class DoubleValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\ValueObjects\DoubleValue $value
-     * @return \Mcustiel\TypedPhp\ValueObjects\DoubleValue
+     * @param \Mcustiel\TypedPhp\Types\DoubleValue $value
+     * @return \Mcustiel\TypedPhp\Types\DoubleValue
      */
     public function substract(DoubleValue $value)
     {
@@ -48,8 +48,8 @@ class DoubleValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\ValueObjects\DoubleValue $value
-     * @return \Mcustiel\TypedPhp\ValueObjects\DoubleValue
+     * @param \Mcustiel\TypedPhp\Types\DoubleValue $value
+     * @return \Mcustiel\TypedPhp\Types\DoubleValue
      */
     public function multiply(DoubleValue $value)
     {
@@ -57,8 +57,8 @@ class DoubleValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\ValueObjects\DoubleValue $value
-     * @return \Mcustiel\TypedPhp\ValueObjects\DoubleValue
+     * @param \Mcustiel\TypedPhp\Types\DoubleValue $value
+     * @return \Mcustiel\TypedPhp\Types\DoubleValue
      */
     public function divide(DoubleValue $value)
     {

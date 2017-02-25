@@ -1,7 +1,7 @@
 <?php
-namespace Mcustiel\TypedPhp\Test\ValueObjects\Multiple;
+namespace Mcustiel\TypedPhp\Test\Types\Multiple;
 
-use Mcustiel\TypedPhp\ValueObjects\Multiple\PrimitivesArray;
+use Mcustiel\TypedPhp\Types\Multiple\PrimitivesArray;
 use Mcustiel\TypedPhp\Extra\PhpTypes;
 
 class PrimitivesArrayTest extends \PHPUnit_Framework_TestCase

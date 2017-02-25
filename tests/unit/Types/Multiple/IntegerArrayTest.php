@@ -1,7 +1,7 @@
 <?php
-namespace Mcustiel\TypedPhp\Test\ValueObjects\Multiple;
+namespace Mcustiel\TypedPhp\Test\Types\Multiple;
 
-use Mcustiel\TypedPhp\ValueObjects\Multiple\IntegerArray;
+use Mcustiel\TypedPhp\Types\Multiple\IntegerArray;
 
 class IntegerArrayTest extends \PHPUnit_Framework_TestCase
 {

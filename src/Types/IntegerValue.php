@@ -1,5 +1,5 @@
 <?php
-namespace Mcustiel\TypedPhp\ValueObjects;
+namespace Mcustiel\TypedPhp\Types;
 
 use Mcustiel\TypedPhp\PrimitiveValueObject;
 
@@ -14,7 +14,7 @@ class IntegerValue extends PrimitiveValueObject
     }
 
     /**
-     * @return \Mcustiel\TypedPhp\ValueObjects\StringValue
+     * @return \Mcustiel\TypedPhp\Types\StringValue
      */
     public function toStringValue()
     {
@@ -22,7 +22,7 @@ class IntegerValue extends PrimitiveValueObject
     }
 
     /**
-     * @return \Mcustiel\TypedPhp\ValueObjects\DoubleValue
+     * @return \Mcustiel\TypedPhp\Types\DoubleValue
      */
     public function toDoubleValue()
     {
@@ -30,8 +30,8 @@ class IntegerValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\ValueObjects\IntegerValue $value
-     * @return \Mcustiel\TypedPhp\ValueObjects\IntegerValue
+     * @param \Mcustiel\TypedPhp\Types\IntegerValue $value
+     * @return \Mcustiel\TypedPhp\Types\IntegerValue
      */
     public function add(IntegerValue $value)
     {
@@ -39,8 +39,8 @@ class IntegerValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\ValueObjects\IntegerValue $value
-     * @return \Mcustiel\TypedPhp\ValueObjects\IntegerValue
+     * @param \Mcustiel\TypedPhp\Types\IntegerValue $value
+     * @return \Mcustiel\TypedPhp\Types\IntegerValue
      */
     public function substract(IntegerValue $value)
     {
@@ -48,8 +48,8 @@ class IntegerValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\ValueObjects\IntegerValue $value
-     * @return \Mcustiel\TypedPhp\ValueObjects\IntegerValue
+     * @param \Mcustiel\TypedPhp\Types\IntegerValue $value
+     * @return \Mcustiel\TypedPhp\Types\IntegerValue
      */
     public function multiply(IntegerValue $value)
     {
@@ -57,8 +57,8 @@ class IntegerValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\ValueObjects\IntegerValue $value
-     * @return \Mcustiel\TypedPhp\ValueObjects\IntegerValue
+     * @param \Mcustiel\TypedPhp\Types\IntegerValue $value
+     * @return \Mcustiel\TypedPhp\Types\IntegerValue
      */
     public function divide(IntegerValue $value)
     {
@@ -66,8 +66,8 @@ class IntegerValue extends PrimitiveValueObject
     }
 
     /**
-     * @param \Mcustiel\TypedPhp\ValueObjects\IntegerValue $value
-     * @return \Mcustiel\TypedPhp\ValueObjects\IntegerValue
+     * @param \Mcustiel\TypedPhp\Types\IntegerValue $value
+     * @return \Mcustiel\TypedPhp\Types\IntegerValue
      */
     public function module(IntegerValue $value)
     {
