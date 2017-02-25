@@ -1,12 +1,15 @@
 filter:
   paths: [src/*]
-  excluded_paths: [vendor/*, test/*]
+  excluded_paths: ["vendor/*", "tests/*"]
 before_commands:
   - 'composer install --dev --prefer-source'
+filter:
+    excluded_paths:
+        - 'tests/*'
 checks:
-  php:
-    code_rating: true
-    duplication: true
+    php: true
+coding_style:
+    php: {  }
 build:
   environment:
     php:
