@@ -14,7 +14,6 @@ abstract class ArrayValueObject implements
     private $array;
 
     /**
-     * @param string $type
      * @param array $value
      */
     public function __construct(array $value = [])
@@ -111,7 +110,6 @@ abstract class ArrayValueObject implements
 
     /**
      * @param array $array
-     * @param string $type
      *
      * @throws \InvalidArgumentException
      */
