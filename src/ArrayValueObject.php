@@ -1,8 +1,18 @@
 <?php
 namespace Mcustiel\TypedPhp;
 
-abstract class ArrayValueObject extends \ArrayObject implements Primitive
+abstract class ArrayValueObject implements
+    Primitive,
+    \ArrayAccess,
+    \IteratorAggregate,
+    \Countable,
+    \Serializable
 {
+    /**
+     * @var \ArrayObject
+     */
+    private $array;
+
     /**
      * @param string $type
      * @param array $value
@@ -10,7 +20,7 @@ abstract class ArrayValueObject extends \ArrayObject implements Primitive
     public function __construct(array $value)
     {
         $this->checkArrayTypes($value);
-        parent::__construct($value);
+        $this->array = new \ArrayObject($value);
     }
 
     /**
@@ -18,7 +28,7 @@ abstract class ArrayValueObject extends \ArrayObject implements Primitive
      */
     public function value()
     {
-        return $this->getArrayCopy();
+        return $this->array->getArrayCopy();
     }
 
     /**
@@ -28,7 +38,68 @@ abstract class ArrayValueObject extends \ArrayObject implements Primitive
     public function offsetSet($index, $newval)
     {
         $this->validate($newval);
-        parent::offsetSet($index, $newval);
+        $this->array->offsetSet($index, $newval);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @see \ArrayAccess::offsetExists()
+     */
+    public function offsetExists($offset)
+    {
+        return $this->array->offsetExists($offset);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @see \ArrayAccess::offsetGet()
+     */
+    public function offsetGet($offset)
+    {
+        return $this->array->offsetGet($offset);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @see \ArrayAccess::offsetUnset()
+     */
+    public function offsetUnset($offset)
+    {
+        $this->array->offsetUnset($offset);
+    }
+
+    /**
+     * {@inheritDoc}
+     * @see \IteratorAggregate::getIterator()
+     */
+    public function getIterator()
+    {
+        return $this->array->getIterator();
+    }
+
+    /**
+     * {@inheritDoc}
+     * @see \Countable::count()
+     */
+    public function count()
+    {
+        return $this->array->count();
+    }
+
+    /**
+     * @return string
+     */
+    public function serialize()
+    {
+        return $this->array->serialize();
+    }
+
+    /**
+     * @param string $serialized
+     */
+    public function unserialize($serialized)
+    {
+        $this->array->unserialize($serialized);
     }
 
     /**

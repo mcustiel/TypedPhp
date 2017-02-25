@@ -1,9 +1,9 @@
 <?php
 namespace Mcustiel\TypedPhp\Test\ValueObjects\Multiple;
 
-use Mcustiel\TypedPhp\ValueObjects\Multiple\DoubleArray;
+use Mcustiel\TypedPhp\ValueObjects\Multiple\IntegerArray;
 
-class DoubleArrayTest extends \PHPUnit_Framework_TestCase
+class IntegerArrayTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @return array
@@ -11,8 +11,8 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
     public function validValuesProvider()
     {
         return [
-            [[0.0]],
-            [[1.1, 2.2, 3.3, 4.4, 5.5]],
+            [[0]],
+            [[1, 2, 3, 4, 5]],
             [[]],
         ];
     }
@@ -24,11 +24,10 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [['p', 'o', 't', 'a', 't', 'o']],
-            [[1, 2, 3]],
-            [[1.0, 2.0, 3]],
-            [[1.0, 2, 3.0]],
-            [[1, 2.0, 3.0]],
-            [['1.1']],
+            [[1, 2, 'c']],
+            [[1, 'b', 'c']],
+            [['a', 2, 3]],
+            [['1']],
             [['0']],
             [[[]]],
         ];
@@ -43,7 +42,6 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
             [null],
             ['1'],
             [1],
-            ['1.2'],
             [1.2],
             ['string'],
             [function () {
@@ -52,7 +50,6 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-
     /**
      * @test
      * @dataProvider validValuesProvider
@@ -60,18 +57,18 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldCreateCorrectlyWithValidArrays(array $array)
     {
-        $arrayValue = new DoubleArray($array);
+        $arrayValue = new IntegerArray($array);
         $this->assertEquals($array, $arrayValue->value());
     }
 
     /**
      * @test
      */
-    public function shouldWorkWhenAddingWithValidValue()
+    public function shouldWorkWhenAddingWithValidValueAsAnArray()
     {
-        $array = new DoubleArray([1.0]);
-        $array[] = 2.1;
-        $this->assertEquals([1.0, 2.1], $array->value());
+        $array = new IntegerArray([1]);
+        $array[] = 2;
+        $this->assertEquals([1, 2], $array->value());
     }
 
     /**
@@ -82,7 +79,7 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFailWhenCreatingWithInvalidValues($value)
     {
-        new DoubleArray($value);
+        new IntegerArray($value);
     }
 
     /**
@@ -93,7 +90,7 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFailWithInvalidArrays(array $value)
     {
-        new DoubleArray($value);
+        new IntegerArray($value);
     }
 
     /**
@@ -102,7 +99,28 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFailIfTryToAddAnInvalidValue()
     {
-        $array = new DoubleArray([1.0]);
-        $array[] = 2;
+        $array = new IntegerArray([1]);
+        $array[] = 'potato';
+    }
+
+    /**
+     * @test
+     */
+    public function shouldCountElementsAsAnArray()
+    {
+        $array = new IntegerArray([1, 2, 3]);
+        $this->assertEquals(3, count($array));
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeIterableAsForeach()
+    {
+        $array = new IntegerArray([1, 2, 3]);
+        $i = 0;
+        foreach ($array as $value) {
+            $this->assertEquals(++$i, $value);
+        }
     }
 }
