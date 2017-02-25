@@ -1,7 +1,7 @@
 <?php
 namespace Mcustiel\TypedPhp;
 
-abstract class PrimitiveValueObject implements Primitive
+abstract class PrimitiveValueObject implements Primitive, \Serializable
 {
     /**
      * @var mixed
@@ -32,6 +32,23 @@ abstract class PrimitiveValueObject implements Primitive
     public function value()
     {
         return $this->value;
+    }
+
+    /**
+     * @return string
+     */
+    public function serialize()
+    {
+        return serialize($this->value);
+    }
+
+    /**
+     * @param string $serialized
+     * @return string
+     */
+    public function unserialize($serialized)
+    {
+        $this->value = unserialize($serialized);
     }
 
     /**

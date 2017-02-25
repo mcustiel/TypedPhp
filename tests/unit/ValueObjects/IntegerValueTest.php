@@ -119,4 +119,16 @@ class IntegerValueTest extends \PHPUnit_Framework_TestCase
         $value = new IntegerValue(15);
         $this->assertEquals(new DoubleValue(15.0), $value->toDoubleValue());
     }
+
+    /**
+     * @test
+     */
+    public function shouldSerializeAndUnserialize()
+    {
+        $value = new IntegerValue(15);
+        $serialized = serialize($value);
+        $unserialized = unserialize($serialized);
+        $this->assertInstanceOf(IntegerValue::class, $unserialized);
+        $this->assertSame(15, $unserialized->value());
+    }
 }
