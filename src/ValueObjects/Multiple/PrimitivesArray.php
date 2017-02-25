@@ -17,7 +17,7 @@ class PrimitivesArray extends ArrayValueObject
      * @param string $type
      * @param array $array
      */
-    public function __construct($type, array $array)
+    public function __construct($type, array $array = [])
     {
         if (!$this->isPhpType($type)) {
             throw new \InvalidArgumentException('Expected a php internal type, got ' . $type);

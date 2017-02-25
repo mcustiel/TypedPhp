@@ -123,4 +123,16 @@ class IntegerArrayTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals(++$i, $value);
         }
     }
+
+    /**
+     * @test
+     */
+    public function shouldSerializeAndUnserialize()
+    {
+        $array = new IntegerArray([1, 2, 3]);
+        $serialized = serialize($array);
+        $unserialized = unserialize($serialized);
+        $this->assertInstanceOf(IntegerArray::class, $unserialized);
+        $this->assertEquals([1, 2, 3], $unserialized->value());
+    }
 }

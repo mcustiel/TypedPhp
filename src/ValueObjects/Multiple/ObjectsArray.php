@@ -18,7 +18,7 @@ class ObjectsArray extends ArrayValueObject
      * @param string $className
      * @param array $array
      */
-    public function __construct($className, array $array)
+    public function __construct($className, array $array = [])
     {
         if (!class_exists($className)) {
             throw new \InvalidArgumentException('Expected a class name, got ' . $className);

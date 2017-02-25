@@ -17,7 +17,7 @@ abstract class ArrayValueObject implements
      * @param string $type
      * @param array $value
      */
-    public function __construct(array $value)
+    public function __construct(array $value = [])
     {
         $this->checkArrayTypes($value);
         $this->array = new \ArrayObject($value);
@@ -91,7 +91,7 @@ abstract class ArrayValueObject implements
      */
     public function serialize()
     {
-        return $this->array->serialize();
+        return serialize($this->array);
     }
 
     /**
@@ -99,7 +99,7 @@ abstract class ArrayValueObject implements
      */
     public function unserialize($serialized)
     {
-        $this->array->unserialize($serialized);
+        $this->array = unserialize($serialized);
     }
 
     /**
