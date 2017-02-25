@@ -1,9 +1,9 @@
 <?php
 namespace Mcustiel\TypedPhp\Test\ValueObjects\Multiple;
 
-use Mcustiel\TypedPhp\ValueObjects\Multiple\StringArray;
+use Mcustiel\TypedPhp\ValueObjects\Multiple\IntegerArray;
 
-class StringArrayTest extends \PHPUnit_Framework_TestCase
+class IntegerArrayTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @return array
@@ -11,8 +11,8 @@ class StringArrayTest extends \PHPUnit_Framework_TestCase
     public function validValuesProvider()
     {
         return [
-            [['']],
-            [['p', 'o', 't', 'a', 't', 'o']],
+            [[0]],
+            [[1, 2, 3, 4, 5]],
             [[]],
         ];
     }
@@ -23,10 +23,12 @@ class StringArrayTest extends \PHPUnit_Framework_TestCase
     public function invalidArrayValuesProvider()
     {
         return [
-            [[1, 2, 3]],
-            [['a', 'b', 3]],
-            [['a', 2, 'c']],
+            [['p', 'o', 't', 'a', 't', 'o']],
+            [[1, 2, 'c']],
             [[1, 'b', 'c']],
+            [['a', 2, 3]],
+            [['1']],
+            [['0']],
             [[[]]],
         ];
     }
@@ -38,6 +40,7 @@ class StringArrayTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [null],
+            ['1'],
             [1],
             [1.2],
             ['string'],
@@ -55,7 +58,7 @@ class StringArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldCreateCorrectlyWithValidArrays(array $array)
     {
-        $arrayValue = new StringArray($array);
+        $arrayValue = new IntegerArray($array);
         $this->assertEquals($array, $arrayValue->value());
     }
 
@@ -64,9 +67,9 @@ class StringArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldWorkWhenAddingWithValidValue()
     {
-        $array = new StringArray(['potato']);
-        $array[] = 'tomato';
-        $this->assertEquals(['potato', 'tomato'], $array->value());
+        $array = new IntegerArray([1]);
+        $array[] = 2;
+        $this->assertEquals([1, 2], $array->value());
     }
 
     /**
@@ -77,7 +80,7 @@ class StringArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFailWhenCreatingWithInvalidValues($value)
     {
-        new StringArray($value);
+        new IntegerArray($value);
     }
 
     /**
@@ -88,7 +91,7 @@ class StringArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFailWithInvalidArrays(array $value)
     {
-        new StringArray($value);
+        new IntegerArray($value);
     }
 
     /**
@@ -97,7 +100,7 @@ class StringArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFailIfTryToAddAnInvalidValue()
     {
-        $array = new StringArray(['potato']);
-        $array[] = 1;
+        $array = new IntegerArray([1]);
+        $array[] = 'potato';
     }
 }
