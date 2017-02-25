@@ -21,7 +21,7 @@ class ObjectsArray extends ArrayValueObject
     public function __construct($className, array $array)
     {
         if (!class_exists($className)) {
-            throw new \Exception('Expected a class name, got ' . $className);
+            throw new \InvalidArgumentException('Expected a class name, got ' . $className);
         }
         $this->className = $className;
         parent::__construct($array);
