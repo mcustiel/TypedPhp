@@ -68,7 +68,7 @@ class IntegerArrayTest extends \PHPUnit_Framework_TestCase
     {
         $array = new IntegerArray([1]);
         $array[] = 2;
-        $this->assertEquals([1, 2], $array->value());
+        $this->assertSame([1, 2], $array->value());
     }
 
     /**
@@ -109,7 +109,7 @@ class IntegerArrayTest extends \PHPUnit_Framework_TestCase
     public function shouldCountElementsAsAnArray()
     {
         $array = new IntegerArray([1, 2, 3]);
-        $this->assertEquals(3, count($array));
+        $this->assertSame(3, count($array));
     }
 
     /**
@@ -120,8 +120,38 @@ class IntegerArrayTest extends \PHPUnit_Framework_TestCase
         $array = new IntegerArray([1, 2, 3]);
         $i = 0;
         foreach ($array as $value) {
-            $this->assertEquals(++$i, $value);
+            $this->assertSame(++$i, $value);
         }
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeAccessibleAsArray()
+    {
+        $array = new IntegerArray([1, 2, 3]);
+        $element = $array[1];
+        $this->assertSame(2, $element);
+    }
+
+    /**
+     * @test
+     */
+    public function shoulBeCheckedAsArray()
+    {
+        $array = new IntegerArray([1, 2, 3]);
+        $this->assertTrue(isset($array[1]));
+        $this->assertFalse(isset($array[4]));
+    }
+
+    /**
+     * @test
+     */
+    public function shoulBeUnsetAsArray()
+    {
+        $array = new IntegerArray([1, 2, 3]);
+        unset($array[1]);
+        $this->assertSame([1, 2 => 3], $array->value());
     }
 
     /**
@@ -133,6 +163,6 @@ class IntegerArrayTest extends \PHPUnit_Framework_TestCase
         $serialized = serialize($array);
         $unserialized = unserialize($serialized);
         $this->assertInstanceOf(IntegerArray::class, $unserialized);
-        $this->assertEquals([1, 2, 3], $unserialized->value());
+        $this->assertSame([1, 2, 3], $unserialized->value());
     }
 }
