@@ -5,6 +5,14 @@
 		"primitives",
 		"value objects"
 	],
+	"authors" : [
+		{
+		    "name" : "Mariano Custiel",
+		    "email" : "jmcustiel@gmail.com",
+		    "homepage" : "https://github.com/mcustiel",
+		    "role" : "Developer"
+		}
+	],
 	"autoload" : {
 		"psr-4" : {
 			"Mcustiel\\TypedPhp\\" : "src"
@@ -15,9 +23,9 @@
 	       "Mcustiel\\TypedPhp\\Test\\" : "tests/unit"
 	   }
 	},
-	"name" : "mcustiel/TypedPhp",
+	"name" : "mcustiel/typed-php",
 	"type" : "library",
-	"description" : "Collection of value objects for PHP primitives",
+	"description" : "Object wrappers for primitives and typed arrays in PHP",
 	"require" : {
 		"php" : ">=5.5"
 	},
