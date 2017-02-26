@@ -20,4 +20,9 @@ trait ToDoubleConverter
     {
         return new DoubleValue((double) $this->value());
     }
+
+    /**
+     * @mixed
+     */
+    abstract public function value();
 }

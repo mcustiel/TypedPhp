@@ -20,4 +20,9 @@ trait ToIntegerConverter
     {
         return new IntegerValue((int) $this->value());
     }
+
+    /**
+     * @mixed
+     */
+    abstract public function value();
 }

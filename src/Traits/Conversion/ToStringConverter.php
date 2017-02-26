@@ -12,4 +12,9 @@ trait ToStringConverter
     {
         return new StringValue($this->__toString());
     }
+
+    /**
+     * @mixed
+     */
+    abstract public function __toString();
 }

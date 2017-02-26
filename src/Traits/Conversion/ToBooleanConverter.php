@@ -20,4 +20,9 @@ trait ToBooleanConverter
     {
         return new BooleanValue((bool) $this->value());
     }
+
+    /**
+     * @mixed
+     */
+    abstract public function value();
 }
