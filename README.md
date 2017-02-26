@@ -37,7 +37,8 @@ Also all of them return themselves as string, through implementation of __toStri
 
 * DoubleValue
 * IntegerValue
-* String Value
+* StringValue
+* BooleanValue
 
 ### Arrays:
 
@@ -52,6 +53,7 @@ PrimitivesArray object allows a collection of variables an internal PHP type. An
 * DoubleArray
 * IntegerArray
 * StringArray
+* BooleanArray
 
 All of them are constructed with an array as argument. If there is a value in the array of a type that is not correct, an exception will be thrown.
 
@@ -85,3 +87,7 @@ If there are classes that extend Foo, FooArray will allow them, so polymorphism 
 #### Immutable arrays
 
 For each array type provider there is an immutable version, that allows to be created with a set of values and is not allowed to change.
+* ImmutableDoubleArray
+* ImmutableIntegerArray
+* ImmutableStringArray
+* ImmutableBooleanArray
