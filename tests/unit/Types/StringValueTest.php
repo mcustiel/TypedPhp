@@ -2,8 +2,6 @@
 namespace Mcustiel\TypedPhp\Test\Types;
 
 use Mcustiel\TypedPhp\Types\StringValue;
-use Mcustiel\TypedPhp\Types\DoubleValue;
-use Mcustiel\TypedPhp\Types\IntegerValue;
 use Mcustiel\TypedPhp\ArrayValueObject;
 use Mcustiel\TypedPhp\Types\Multiple\StringArray;
 
@@ -41,7 +39,7 @@ class StringValueTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider validValuesProvider
      */
-    public function shouldAcceptADoubleAndReturnIt($validValue)
+    public function shouldAcceptAStringAndReturnIt($validValue)
     {
         $value = new StringValue($validValue);
         $this->assertEquals($validValue, $value->value());
@@ -64,62 +62,6 @@ class StringValueTest extends \PHPUnit_Framework_TestCase
     {
         $value = new StringValue('15');
         $this->assertEquals('15', (string) $value);
-    }
-
-    /**
-     * @test
-     */
-    public function shouldConvertToDouble()
-    {
-        $value = new StringValue('15.1');
-        $this->assertInternalType('double', $value->toDouble());
-        $this->assertSame(15.1, $value->toDouble());
-    }
-
-    /**
-     * @test
-     */
-    public function shouldConvertToInteger()
-    {
-        $value = new StringValue('15');
-        $this->assertInternalType('integer', $value->toInteger());
-        $this->assertSame(15, $value->toInteger());
-    }
-
-    /**
-     * @test
-     */
-    public function shouldConvertToDoubleValueObject()
-    {
-        $value = new StringValue('15');
-        $this->assertEquals(new DoubleValue(15.0), $value->toDoubleValue());
-    }
-
-    /**
-     * @test
-     */
-    public function shouldConvertEmptyToDoubleValueObject()
-    {
-        $value = new StringValue('');
-        $this->assertEquals(new DoubleValue(0.0), $value->toDoubleValue());
-    }
-
-    /**
-     * @test
-     */
-    public function shouldConvertToIntegerValueObject()
-    {
-        $value = new StringValue('15');
-        $this->assertEquals(new IntegerValue(15), $value->toIntegerValue());
-    }
-
-    /**
-     * @test
-     */
-    public function shouldConvertEmptyToIntegerValueObject()
-    {
-        $value = new StringValue('');
-        $this->assertEquals(new IntegerValue(0), $value->toIntegerValue());
     }
 
     /**
@@ -172,5 +114,18 @@ class StringValueTest extends \PHPUnit_Framework_TestCase
         $result = $value->explode(new StringValue('.'));
         $this->assertInstanceOf(StringArray::class, $result);
         $this->assertEquals(['p', 'o', 't', 'a', 't', 'o'], $result->value());
+    }
+
+    /**
+     * @test
+     * @dataProvider validValuesProvider
+     */
+    public function shouldSerializeAndUnserialize($validValue)
+    {
+        $value = new StringValue($validValue);
+        $serialized = serialize($value);
+        $unserialized = unserialize($serialized);
+        $this->assertInstanceOf(StringValue::class, $unserialized);
+        $this->assertSame($validValue, $unserialized->value());
     }
 }

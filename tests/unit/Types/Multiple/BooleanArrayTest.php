@@ -1,9 +1,9 @@
 <?php
 namespace Mcustiel\TypedPhp\Test\Types\Multiple;
 
-use Mcustiel\TypedPhp\Types\Multiple\DoubleArray;
+use Mcustiel\TypedPhp\Types\Multiple\BooleanArray;
 
-class DoubleArrayTest extends \PHPUnit_Framework_TestCase
+class BooleanArrayTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @return array
@@ -11,8 +11,8 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
     public function validValuesProvider()
     {
         return [
-            [[0.0]],
-            [[1.1, 2.2, 3.3, 4.4, 5.5]],
+            [[false]],
+            [[true, false, true, true, false, true, false, false]],
             [[]],
         ];
     }
@@ -24,12 +24,11 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [['p', 'o', 't', 'a', 't', 'o']],
-            [[1, 2, 3]],
-            [[1.0, 2.0, 3]],
-            [[1.0, 2, 3.0]],
-            [[1, 2.0, 3.0]],
-            [['1.1']],
-            [['0']],
+            [[true, false, 0]],
+            [[1, false, true]],
+            [[true, 0, false]],
+            [['1']],
+            [['false']],
             [[[]]],
         ];
     }
@@ -43,7 +42,6 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
             [null],
             ['1'],
             [1],
-            ['1.2'],
             [true],
             [1.2],
             ['string'],
@@ -53,7 +51,6 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-
     /**
      * @test
      * @dataProvider validValuesProvider
@@ -61,18 +58,18 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldCreateCorrectlyWithValidArrays(array $array)
     {
-        $arrayValue = new DoubleArray($array);
+        $arrayValue = new BooleanArray($array);
         $this->assertEquals($array, $arrayValue->value());
     }
 
     /**
      * @test
      */
-    public function shouldWorkWhenAddingWithValidValue()
+    public function shouldWorkWhenAddingWithValidValueAsAnArray()
     {
-        $array = new DoubleArray([1.0]);
-        $array[] = 2.1;
-        $this->assertEquals([1.0, 2.1], $array->value());
+        $array = new BooleanArray([true, false]);
+        $array[] = true;
+        $this->assertSame([true, false, true], $array->value());
     }
 
     /**
@@ -83,7 +80,7 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFailWhenCreatingWithInvalidValues($value)
     {
-        new DoubleArray($value);
+        new BooleanArray($value);
     }
 
     /**
@@ -94,7 +91,7 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFailWithInvalidArrays(array $value)
     {
-        new DoubleArray($value);
+        new BooleanArray($value);
     }
 
     /**
@@ -103,7 +100,36 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldFailIfTryToAddAnInvalidValue()
     {
-        $array = new DoubleArray([1.0]);
-        $array[] = 2;
+        $array = new BooleanArray([true]);
+        $array[] = 'potato';
+    }
+
+    /**
+     * @test
+     */
+    public function shouldCountElementsAsAnArray()
+    {
+        $array = new BooleanArray([true, false, false]);
+        $this->assertSame(3, count($array));
+    }
+    /**
+     * @test
+     */
+    public function shouldBeAccessibleAsArray()
+    {
+        $array = new BooleanArray([true, false]);
+        $element = $array[1];
+        $this->assertSame(false, $element);
+    }
+    /**
+     * @test
+     */
+    public function shouldSerializeAndUnserialize()
+    {
+        $array = new BooleanArray([true, false, true]);
+        $serialized = serialize($array);
+        $unserialized = unserialize($serialized);
+        $this->assertInstanceOf(BooleanArray::class, $unserialized);
+        $this->assertSame([true, false, true], $unserialized->value());
     }
 }

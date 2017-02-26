@@ -2,32 +2,13 @@
 namespace Mcustiel\TypedPhp\Types;
 
 use Mcustiel\TypedPhp\PrimitiveValueObject;
+use Mcustiel\TypedPhp\Traits\Conversion\ToBooleanConverter;
+use Mcustiel\TypedPhp\Traits\Conversion\ToDoubleConverter;
+use Mcustiel\TypedPhp\Traits\Conversion\ToStringConverter;
 
 class IntegerValue extends PrimitiveValueObject
 {
-    /**
-     * @return double
-     */
-    public function toDouble()
-    {
-        return (double) $this->value();
-    }
-
-    /**
-     * @return \Mcustiel\TypedPhp\Types\StringValue
-     */
-    public function toStringValue()
-    {
-        return new StringValue((string) $this->value());
-    }
-
-    /**
-     * @return \Mcustiel\TypedPhp\Types\DoubleValue
-     */
-    public function toDoubleValue()
-    {
-        return new DoubleValue((double) $this->value());
-    }
+    use ToBooleanConverter, ToDoubleConverter, ToStringConverter;
 
     /**
      * @param \Mcustiel\TypedPhp\Types\IntegerValue $value

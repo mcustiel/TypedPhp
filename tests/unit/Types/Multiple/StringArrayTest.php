@@ -41,6 +41,7 @@ class StringArrayTest extends \PHPUnit_Framework_TestCase
             [1],
             [1.2],
             ['string'],
+            [true],
             [function () {
             }],
             [new \stdClass()]

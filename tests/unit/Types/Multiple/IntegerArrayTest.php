@@ -42,6 +42,7 @@ class IntegerArrayTest extends \PHPUnit_Framework_TestCase
             [null],
             ['1'],
             [1],
+            [true],
             [1.2],
             ['string'],
             [function () {

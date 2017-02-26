@@ -4,40 +4,13 @@ namespace Mcustiel\TypedPhp\Types;
 use Mcustiel\TypedPhp\PrimitiveValueObject;
 use Mcustiel\TypedPhp\Types\Multiple\StringArray;
 use Mcustiel\TypedPhp\ArrayValueObject;
+use Mcustiel\TypedPhp\Traits\Conversion\ToDoubleConverter;
+use Mcustiel\TypedPhp\Traits\Conversion\ToBooleanConverter;
+use Mcustiel\TypedPhp\Traits\Conversion\ToIntegerConverter;
 
 class StringValue extends PrimitiveValueObject
 {
-    /**
-     * @return integer
-     */
-    public function toInteger()
-    {
-        return (integer) $this->value();
-    }
-
-    /**
-     * @return double
-     */
-    public function toDouble()
-    {
-        return (double) $this->value();
-    }
-
-    /**
-     * @return \Mcustiel\TypedPhp\Types\DoubleValue
-     */
-    public function toDoubleValue()
-    {
-        return new DoubleValue((double) $this->value());
-    }
-
-    /**
-     * @return \Mcustiel\TypedPhp\Types\IntegerValue
-     */
-    public function toIntegerValue()
-    {
-        return new IntegerValue((int) $this->value());
-    }
+    use ToBooleanConverter, ToDoubleConverter, ToIntegerConverter;
 
     /**
      * {@inheritDoc}

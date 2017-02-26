@@ -2,7 +2,6 @@
 namespace Mcustiel\TypedPhp\Test\Types;
 
 use Mcustiel\TypedPhp\Types\DoubleValue;
-use Mcustiel\TypedPhp\Types\IntegerValue;
 
 class DoubleValueTest extends \PHPUnit_Framework_TestCase
 {
@@ -91,29 +90,14 @@ class DoubleValueTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     * @dataProvider validValuesProvider
      */
-    public function shouldConvertToString()
+    public function shouldSerializeAndUnserialize($validValue)
     {
-        $value = new DoubleValue(15.0);
-        $this->assertEquals('15.0', (string) $value);
-    }
-
-    /**
-     * @test
-     */
-    public function shouldConvertToInteger()
-    {
-        $value = new DoubleValue(15.0);
-        $this->assertInternalType('integer', $value->toInteger());
-        $this->assertSame(15, $value->toInteger());
-    }
-
-    /**
-     * @test
-     */
-    public function shouldConvertToIntegerValueObject()
-    {
-        $value = new DoubleValue(15.0);
-        $this->assertEquals(new IntegerValue(15), $value->toIntegerValue());
+        $value = new DoubleValue($validValue);
+        $serialized = serialize($value);
+        $unserialized = unserialize($serialized);
+        $this->assertInstanceOf(DoubleValue::class, $unserialized);
+        $this->assertSame($validValue, $unserialized->value());
     }
 }

@@ -2,7 +2,6 @@
 namespace Mcustiel\TypedPhp\Test\Types;
 
 use Mcustiel\TypedPhp\Types\IntegerValue;
-use Mcustiel\TypedPhp\Types\DoubleValue;
 
 class IntegerValueTest extends \PHPUnit_Framework_TestCase
 {
@@ -40,7 +39,7 @@ class IntegerValueTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider validValuesProvider
      */
-    public function shouldAcceptADoubleAndReturnIt($validValue)
+    public function shouldAcceptAIntegerAndReturnIt($validValue)
     {
         $value = new IntegerValue($validValue);
         $this->assertEquals($validValue, $value->value());
@@ -95,40 +94,22 @@ class IntegerValueTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldConvertToString()
+    public function shouldGetTheModuleCorrectly()
     {
         $value = new IntegerValue(15);
-        $this->assertEquals('15', (string) $value);
+        $this->assertEquals(3, $value->module(new IntegerValue(4))->value());
     }
 
     /**
      * @test
+     * @dataProvider validValuesProvider
      */
-    public function shouldConvertToDouble()
+    public function shouldSerializeAndUnserialize($validValue)
     {
-        $value = new IntegerValue(15);
-        $this->assertInternalType('double', $value->toDouble());
-        $this->assertSame(15.0, $value->toDouble());
-    }
-
-    /**
-     * @test
-     */
-    public function shouldConvertToDoubleValueObject()
-    {
-        $value = new IntegerValue(15);
-        $this->assertEquals(new DoubleValue(15.0), $value->toDoubleValue());
-    }
-
-    /**
-     * @test
-     */
-    public function shouldSerializeAndUnserialize()
-    {
-        $value = new IntegerValue(15);
+        $value = new IntegerValue($validValue);
         $serialized = serialize($value);
         $unserialized = unserialize($serialized);
         $this->assertInstanceOf(IntegerValue::class, $unserialized);
-        $this->assertSame(15, $unserialized->value());
+        $this->assertSame($validValue, $unserialized->value());
     }
 }
