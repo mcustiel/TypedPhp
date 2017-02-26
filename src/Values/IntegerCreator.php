@@ -8,7 +8,7 @@ class IntegerCreator
     /**
      * @var IntegerValue[]
      */
-    private static $integer = [];
+    private static $values = [];
 
     /**
      * @param integer $value
