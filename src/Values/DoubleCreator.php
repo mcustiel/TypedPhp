@@ -1,18 +1,18 @@
 <?php
 namespace Mcustiel\TypedPhp\Values;
 
-use Mcustiel\TypedPhp\Types\IntegerValue;
+use Mcustiel\TypedPhp\Types\DoubleValue;
 
-class IntegerCreator
+class DoubleCreator
 {
     /**
-     * @var IntegerValue[]
+     * @var DoubleValue[]
      */
     private static $values = [];
 
     /**
-     * @param integer $value
-     * @return IntegerValue
+     * @param double $value
+     * @return DoubleValue
      */
     public static function getValueObject($value)
     {
@@ -21,14 +21,14 @@ class IntegerCreator
     }
 
     /**
-     * @param integer $value
-     * @return IntegerValue
+     * @param double $value
+     * @return DoubleValue
      */
     private static function getValueFromCollection($value)
     {
-        $index = (string) $value;
+        $index = number_format($value, 5);
         if (!isset(self::$values[$index])) {
-            self::$values[$index] = new IntegerValue($value);
+            self::$values[$index] = new DoubleValue($value);
         }
         return self::$values[$index];
     }
@@ -39,9 +39,9 @@ class IntegerCreator
      */
     private static function verifyType($value)
     {
-        if (!is_int($value)) {
+        if (!is_double($value)) {
             throw new \InvalidArgumentException(
-                'Expected a integer value, got: ' . gettype($value)
+                'Expected a double value, got: ' . gettype($value)
             );
         }
     }
