@@ -11,7 +11,7 @@ class BooleanCreatorTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldReturnAValidBooleanValue()
     {
-        $value = BooleanCreator::getValueObject(true);
+        $value = BooleanCreator::instance()->getValueObject(true);
         $this->assertInstanceOf(BooleanValue::class, $value);
         $this->assertSame(true, $value->value());
     }
@@ -22,7 +22,7 @@ class BooleanCreatorTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldfailWhenTypeIsNotValid()
     {
-        BooleanCreator::getValueObject('fail!');
+        BooleanCreator::instance()->getValueObject('fail!');
     }
 
     /**
@@ -30,8 +30,36 @@ class BooleanCreatorTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldReturnTheSameObjectOnMultipleCalls()
     {
-        $value1 = BooleanCreator::getValueObject(true);
-        $value2 = BooleanCreator::getValueObject(true);
+        $value1 = BooleanCreator::instance()->getValueObject(true);
+        $value2 = BooleanCreator::instance()->getValueObject(true);
         $this->assertSame($value1, $value2);
+    }
+
+    /**
+     * @before
+     */
+    public function clearValues()
+    {
+        BooleanCreator::instance()->clear();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldUnsetAValue()
+    {
+        $value1 = BooleanCreator::instance()->getValueObject(true);
+        BooleanCreator::instance()->removeValue($value1);
+        $value2 = BooleanCreator::instance()->getValueObject(true);
+        $this->assertFalse($value1 === $value2);
+    }
+
+    /**
+     * @test
+     * @expectedException \RuntimeException
+     */
+    public function shouldFailIfTheValueIsNotSet()
+    {
+        BooleanCreator::instance()->removeValue(new BooleanValue(true));
     }
 }

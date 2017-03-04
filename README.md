@@ -91,3 +91,16 @@ For each array type provider there is an immutable version, that allows to be cr
 * ImmutableIntegerArray
 * ImmutableStringArray
 * ImmutableBooleanArray
+
+## Flyweight implementation
+
+A basic flyweight pattern implementation is provided. It will return the exact same value object on multiple calls:
+
+```php
+use Mcustiel\TypedPhp\Values\IntegerCreator;
+
+$a = IntegerCreator::instance()->getValueObject(5);
+$b = IntegerCreator::instance()->getValueObject(5);
+
+```
+In this example `$a` and `$b` reference the exact same instance of IntegerValue.

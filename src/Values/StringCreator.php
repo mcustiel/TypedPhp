@@ -1,16 +1,16 @@
 <?php
 namespace Mcustiel\TypedPhp\Values;
 
-use Mcustiel\TypedPhp\Types\BooleanValue;
+use Mcustiel\TypedPhp\Types\StringValue;
 use Mcustiel\TypedPhp\Traits\Creation\Singleton;
 
-class BooleanCreator extends FlyWeightCreator
+class StringCreator extends FlyWeightCreator
 {
     use Singleton;
 
     /**
-     * @param bool $value
-     * @return BooleanValue
+     * @param string $value
+     * @return StringValue
      */
     public function getValueObject($value)
     {
@@ -19,12 +19,12 @@ class BooleanCreator extends FlyWeightCreator
     }
 
     /**
-     * @param bool $value
-     * @return \Mcustiel\TypedPhp\Types\BooleanValue
+     * @param string $value
+     * @return \Mcustiel\TypedPhp\Types\StringValue
      */
     protected function createValue($value)
     {
-        return new BooleanValue($value);
+        return new StringValue($value);
     }
 
     /**
@@ -33,9 +33,9 @@ class BooleanCreator extends FlyWeightCreator
      */
     private function verifyType($value)
     {
-        if (!is_bool($value)) {
+        if (!is_string($value)) {
             throw new \InvalidArgumentException(
-                'Expected a boolean value, got: ' . gettype($value)
+                'Expected a string value, got: ' . gettype($value)
             );
         }
     }

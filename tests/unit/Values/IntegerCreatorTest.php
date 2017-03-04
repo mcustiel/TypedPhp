@@ -11,7 +11,7 @@ class IntegerCreatorTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldReturnAValidIntegerValue()
     {
-        $value = IntegerCreator::getValueObject(3);
+        $value = IntegerCreator::instance()->getValueObject(3);
         $this->assertInstanceOf(IntegerValue::class, $value);
         $this->assertSame(3, $value->value());
     }
@@ -22,7 +22,7 @@ class IntegerCreatorTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldfailWhenTypeIsNotValid()
     {
-        IntegerCreator::getValueObject('fail!');
+        IntegerCreator::instance()->getValueObject('fail!');
     }
 
     /**
@@ -30,8 +30,36 @@ class IntegerCreatorTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldReturnTheSameObjectOnMultipleCalls()
     {
-        $value1 = IntegerCreator::getValueObject(3);
-        $value2 = IntegerCreator::getValueObject(3);
+        $value1 = IntegerCreator::instance()->getValueObject(3);
+        $value2 = IntegerCreator::instance()->getValueObject(3);
         $this->assertSame($value1, $value2);
+    }
+
+    /**
+     * @before
+     */
+    public function clearValues()
+    {
+        IntegerCreator::instance()->clear();
+    }
+
+    /**
+     * @test
+     */
+    public function shouldUnsetAValue()
+    {
+        $value1 = IntegerCreator::instance()->getValueObject(72);
+        IntegerCreator::instance()->removeValue($value1);
+        $value2 = IntegerCreator::instance()->getValueObject(72);
+        $this->assertFalse($value1 === $value2);
+    }
+
+    /**
+     * @test
+     * @expectedException \RuntimeException
+     */
+    public function shouldFailIfTheValueIsNotSet()
+    {
+        IntegerCreator::instance()->removeValue(new IntegerValue(72));
     }
 }

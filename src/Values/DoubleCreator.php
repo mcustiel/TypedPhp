@@ -2,42 +2,36 @@
 namespace Mcustiel\TypedPhp\Values;
 
 use Mcustiel\TypedPhp\Types\DoubleValue;
+use Mcustiel\TypedPhp\Traits\Creation\Singleton;
 
-class DoubleCreator
+class DoubleCreator extends FlyWeightCreator
 {
-    /**
-     * @var DoubleValue[]
-     */
-    private static $values = [];
+    use Singleton;
 
     /**
      * @param double $value
      * @return DoubleValue
      */
-    public static function getValueObject($value)
+    public function getValueObject($value)
     {
-        self::verifyType($value);
-        return self::getValueFromCollection($value);
+        $this->verifyType($value);
+        return $this->getValueFromCollection($value);
     }
 
     /**
      * @param double $value
-     * @return DoubleValue
+     * @return \Mcustiel\TypedPhp\Types\DoubleValue
      */
-    private static function getValueFromCollection($value)
+    protected function createValue($value)
     {
-        $index = number_format($value, 5);
-        if (!isset(self::$values[$index])) {
-            self::$values[$index] = new DoubleValue($value);
-        }
-        return self::$values[$index];
+        return new DoubleValue($value);
     }
 
     /**
      * @param mixed $value
      * @throws \InvalidArgumentException
      */
-    private static function verifyType($value)
+    private function verifyType($value)
     {
         if (!is_double($value)) {
             throw new \InvalidArgumentException(

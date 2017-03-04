@@ -2,42 +2,36 @@
 namespace Mcustiel\TypedPhp\Values;
 
 use Mcustiel\TypedPhp\Types\IntegerValue;
+use Mcustiel\TypedPhp\Traits\Creation\Singleton;
 
-class IntegerCreator
+class IntegerCreator extends FlyWeightCreator
 {
-    /**
-     * @var IntegerValue[]
-     */
-    private static $values = [];
+    use Singleton;
 
     /**
      * @param integer $value
      * @return IntegerValue
      */
-    public static function getValueObject($value)
+    public function getValueObject($value)
     {
-        self::verifyType($value);
-        return self::getValueFromCollection($value);
+        $this->verifyType($value);
+        return $this->getValueFromCollection($value);
     }
 
     /**
-     * @param integer $value
-     * @return IntegerValue
+     * @param int $value
+     * @return \Mcustiel\TypedPhp\Types\IntegerValue
      */
-    private static function getValueFromCollection($value)
+    protected function createValue($value)
     {
-        $index = (string) $value;
-        if (!isset(self::$values[$index])) {
-            self::$values[$index] = new IntegerValue($value);
-        }
-        return self::$values[$index];
+        return new IntegerValue($value);
     }
 
     /**
      * @param mixed $value
      * @throws \InvalidArgumentException
      */
-    private static function verifyType($value)
+    private function verifyType($value)
     {
         if (!is_int($value)) {
             throw new \InvalidArgumentException(
