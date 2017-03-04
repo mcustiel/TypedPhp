@@ -80,7 +80,7 @@ class FooArray extends ObjectsArray
     }
 }
 ```
-That's it, you have a type that all. In your code you can use any FooArray object as a regular array.
+That's it, you have an array type that accepts only Foo objects. In your code you can use any FooArray object as a regular array.
 
 If there are classes that extend Foo, FooArray will allow them, so polymorphism is supported.
 
