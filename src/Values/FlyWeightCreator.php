@@ -46,7 +46,7 @@ abstract class FlyWeightCreator
     abstract protected function createValue($value);
 
     /**
-     * @param boolean $value
+     * @param mixed $value
      * @return \Mcustiel\TypedPhp\Types\Primitive
      */
     protected function getValueFromCollection($value)
