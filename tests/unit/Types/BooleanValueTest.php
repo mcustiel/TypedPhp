@@ -106,6 +106,15 @@ class BooleanValueTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     */
+    public function shoulConvertToStringInAReadableWay()
+    {
+        $this->assertSame('true', (string) new BooleanValue(true));
+        $this->assertSame('false', (string) new BooleanValue(false));
+    }
+
+    /**
+     * @test
      * @dataProvider validValuesProvider
      *
      * @param mixed $validValue
