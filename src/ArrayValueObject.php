@@ -18,6 +18,11 @@ abstract class ArrayValueObject implements Primitive, \ArrayAccess, \IteratorAgg
         $this->array = new \ArrayObject($value);
     }
 
+    public function __toString()
+    {
+        return print_r($this->value(), true);
+    }
+
     /**
      * @return array
      */
@@ -101,11 +106,6 @@ abstract class ArrayValueObject implements Primitive, \ArrayAccess, \IteratorAgg
     public function unserialize($serialized)
     {
         $this->array = unserialize($serialized);
-    }
-
-    public function __toString()
-    {
-        return print_r($this->value(), true);
     }
 
     /**

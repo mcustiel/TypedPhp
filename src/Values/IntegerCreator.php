@@ -40,7 +40,7 @@ class IntegerCreator extends FlyWeightPrimitiveCreator
     {
         if (!is_int($value)) {
             throw new \InvalidArgumentException(
-                'Expected a integer value, got: '.gettype($value)
+                'Expected a integer value, got: ' . gettype($value)
             );
         }
     }

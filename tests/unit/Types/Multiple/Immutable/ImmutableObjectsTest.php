@@ -7,6 +7,7 @@ use Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutableObjectsArray;
 
 /**
  * @covers \Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutableObjectsArray
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutablePrimitivesArray
  * @covers \Mcustiel\TypedPhp\ArrayValueObject
  */
 class ImmutableObjectsTest extends ImmutableArrayAsserts

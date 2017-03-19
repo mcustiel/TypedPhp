@@ -61,7 +61,7 @@ class StringValue extends PrimitiveValueObject
     protected function validate($value)
     {
         if (!is_string($value)) {
-            throw new \InvalidArgumentException('Expected a string, got '.gettype($value));
+            throw new \InvalidArgumentException('Expected a string, got ' . gettype($value));
         }
     }
 }

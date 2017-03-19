@@ -69,7 +69,7 @@ class IntegerValue extends PrimitiveValueObject
     protected function validate($value)
     {
         if (!is_int($value)) {
-            throw new \InvalidArgumentException('Expected an integer, got '.gettype($value));
+            throw new \InvalidArgumentException('Expected an integer, got ' . gettype($value));
         }
     }
 }

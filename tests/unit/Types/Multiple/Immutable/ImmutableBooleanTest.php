@@ -6,6 +6,7 @@ use Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutableBooleanArray;
 
 /**
  * @covers \Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutableBooleanArray
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutablePrimitivesArray
  * @covers \Mcustiel\TypedPhp\ArrayValueObject
  */
 class ImmutableBooleanTest extends ImmutableArrayAsserts

@@ -40,7 +40,7 @@ class DoubleCreator extends FlyWeightPrimitiveCreator
     {
         if (!is_float($value)) {
             throw new \InvalidArgumentException(
-                'Expected a double value, got: '.gettype($value)
+                'Expected a double value, got: ' . gettype($value)
             );
         }
     }

@@ -9,6 +9,7 @@ use Mcustiel\TypedPhp\Types\StringValue;
 
 /**
  * @covers \Mcustiel\TypedPhp\Types\Multiple\ObjectsArray
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\PrimitivesArray
  * @covers \Mcustiel\TypedPhp\ArrayValueObject
  */
 class ObjectsArrayTest extends \PHPUnit_Framework_TestCase

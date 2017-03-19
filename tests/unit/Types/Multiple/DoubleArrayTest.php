@@ -6,6 +6,7 @@ use Mcustiel\TypedPhp\Types\Multiple\DoubleArray;
 
 /**
  * @covers \Mcustiel\TypedPhp\Types\Multiple\DoubleArray
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\PrimitivesArray
  * @covers \Mcustiel\TypedPhp\ArrayValueObject
  */
 class DoubleArrayTest extends \PHPUnit_Framework_TestCase

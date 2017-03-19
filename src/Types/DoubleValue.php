@@ -69,7 +69,7 @@ class DoubleValue extends PrimitiveValueObject
     protected function validate($value)
     {
         if (!is_float($value)) {
-            throw new \InvalidArgumentException('Expected a double, got '.gettype($value));
+            throw new \InvalidArgumentException('Expected a double, got ' . gettype($value));
         }
     }
 }

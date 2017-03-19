@@ -6,6 +6,7 @@ use Mcustiel\TypedPhp\Types\Multiple\IntegerArray;
 
 /**
  * @covers \Mcustiel\TypedPhp\Types\Multiple\IntegerArray
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\PrimitivesArray
  * @covers \Mcustiel\TypedPhp\ArrayValueObject
  */
 class IntegerArrayTest extends \PHPUnit_Framework_TestCase

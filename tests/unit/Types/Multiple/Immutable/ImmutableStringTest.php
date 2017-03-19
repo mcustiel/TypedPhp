@@ -6,6 +6,7 @@ use Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutableStringArray;
 
 /**
  * @covers \Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutableStringArray
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutablePrimitivesArray
  * @covers \Mcustiel\TypedPhp\ArrayValueObject
  */
 class ImmutableStringTest extends ImmutableArrayAsserts

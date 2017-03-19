@@ -6,6 +6,7 @@ use Mcustiel\TypedPhp\Types\Multiple\StringArray;
 
 /**
  * @covers \Mcustiel\TypedPhp\Types\Multiple\StringArray
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\PrimitivesArray
  * @covers \Mcustiel\TypedPhp\ArrayValueObject
  */
 class StringArrayTest extends \PHPUnit_Framework_TestCase

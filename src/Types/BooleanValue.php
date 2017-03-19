@@ -68,7 +68,7 @@ class BooleanValue extends PrimitiveValueObject
     protected function validate($value)
     {
         if (!is_bool($value)) {
-            throw new \InvalidArgumentException('Expected a boolean, got '.gettype($value));
+            throw new \InvalidArgumentException('Expected a boolean, got ' . gettype($value));
         }
     }
 }

@@ -7,7 +7,7 @@ use Mcustiel\TypedPhp\Values\StringCreator;
 
 /**
  * @covers \Mcustiel\TypedPhp\Values\StringCreator
- * @covers \Mcustiel\Traits\Creation\Singleton
+ * @covers \Mcustiel\TypedPhp\Traits\Creation\SingletonMcustiel\TypedPhp\Test\Types\
  */
 class StringCreatorTest extends \PHPUnit_Framework_TestCase
 {

@@ -7,7 +7,7 @@ use Mcustiel\TypedPhp\Values\BooleanCreator;
 
 /**
  * @covers \Mcustiel\TypedPhp\Values\BooleanCreator
- * @covers \Mcustiel\Traits\Creation\Singleton
+ * @covers \Mcustiel\TypedPhp\Traits\Creation\SingletonMcustiel\TypedPhp\Test\Types\
  */
 class BooleanCreatorTest extends \PHPUnit_Framework_TestCase
 {

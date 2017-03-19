@@ -40,7 +40,7 @@ class BooleanCreator extends FlyWeightPrimitiveCreator
     {
         if (!is_bool($value)) {
             throw new \InvalidArgumentException(
-                'Expected a boolean value, got: '.gettype($value)
+                'Expected a boolean value, got: ' . gettype($value)
             );
         }
     }

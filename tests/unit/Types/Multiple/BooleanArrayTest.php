@@ -6,6 +6,7 @@ use Mcustiel\TypedPhp\Types\Multiple\BooleanArray;
 
 /**
  * @covers \Mcustiel\TypedPhp\Types\Multiple\BooleanArray
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\PrimitivesArray
  * @covers \Mcustiel\TypedPhp\ArrayValueObject
  */
 class BooleanArrayTest extends \PHPUnit_Framework_TestCase

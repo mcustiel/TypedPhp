@@ -40,7 +40,7 @@ class StringCreator extends FlyWeightPrimitiveCreator
     {
         if (!is_string($value)) {
             throw new \InvalidArgumentException(
-                'Expected a string value, got: '.gettype($value)
+                'Expected a string value, got: ' . gettype($value)
             );
         }
     }
