@@ -106,6 +106,15 @@ class DoubleValueTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     */
+    public function shoulConvertToStringCorrectly()
+    {
+        $this->assertSame('2.750', (string) new DoubleValue(2.75));
+        $this->assertSame('2.375', (string) new DoubleValue(2.37544987));
+    }
+
+    /**
+     * @test
      * @dataProvider validValuesProvider
      *
      * @param mixed $validValue

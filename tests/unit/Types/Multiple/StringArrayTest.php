@@ -69,6 +69,15 @@ class StringArrayTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function shouldConvertToStringCorrectly()
+    {
+        $value = ['potato', 'tomato', 'banana', 'coconut'];
+        $this->assertSame(print_r($value, true), (string) new StringArray($value));
+    }
+
+    /**
+     * @test
+     */
     public function shouldWorkWhenAddingWithValidValue()
     {
         $array = new StringArray(['potato']);

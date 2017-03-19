@@ -59,6 +59,15 @@ class IntegerArrayTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     */
+    public function shouldConvertToStringCorrectly()
+    {
+        $value = [1, 0, 2, 3];
+        $this->assertSame(print_r($value, true), (string) new IntegerArray($value));
+    }
+
+    /**
+     * @test
      * @dataProvider validValuesProvider
      *
      * @param array $array

@@ -141,6 +141,15 @@ class BooleanArrayTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function shouldConvertToStringCorrectly()
+    {
+        $value = [true, false, true];
+        $this->assertSame(print_r($value, true), (string) new BooleanArray($value));
+    }
+
+    /**
+     * @test
+     */
     public function shouldSerializeAndUnserialize()
     {
         $array = new BooleanArray([true, false, true]);

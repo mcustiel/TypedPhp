@@ -61,6 +61,15 @@ class DoubleArrayTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
+     */
+    public function shouldConvertToStringCorrectly()
+    {
+        $value = [2.0, 3.1, 4.29];
+        $this->assertSame(print_r($value, true), (string) new DoubleArray($value));
+    }
+
+    /**
+     * @test
      * @dataProvider validValuesProvider
      *
      * @param array $array
