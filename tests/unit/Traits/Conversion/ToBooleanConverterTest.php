@@ -1,13 +1,16 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Traits\Conversion;
 
-use Mcustiel\TypedPhp\Primitive;
-use Mcustiel\TypedPhp\Types\DoubleValue;
 use Mcustiel\TypedPhp\Traits\Conversion\ToBooleanConverter;
 use Mcustiel\TypedPhp\Types\BooleanValue;
+use Mcustiel\TypedPhp\Types\DoubleValue;
 use Mcustiel\TypedPhp\Types\IntegerValue;
 use Mcustiel\TypedPhp\Types\StringValue;
 
+/**
+ * @covers \Mcustiel\TypedPhp\Traits\Conversion\ToBooleanConverter
+ */
 class ToBooleanConverterTest extends \PHPUnit_Framework_TestCase
 {
     use ToBooleanConverter;
@@ -37,8 +40,10 @@ class ToBooleanConverterTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @dataProvider objectsAndExpectationsProvider
+     *
+     * @param mixed $testedObject
+     * @param mixed $expectedValue
      */
-
     public function shouldConvertToBooleanValue($testedObject, $expectedValue)
     {
         $this->testedObject = $testedObject;
@@ -50,6 +55,9 @@ class ToBooleanConverterTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @dataProvider objectsAndExpectationsProvider
+     *
+     * @param mixed $testedObject
+     * @param mixed $expectedValue
      */
     public function shouldConvertToBoolean($testedObject, $expectedValue)
     {

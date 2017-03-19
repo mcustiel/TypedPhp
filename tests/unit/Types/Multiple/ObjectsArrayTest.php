@@ -1,11 +1,16 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Types\Multiple;
 
-use Mcustiel\TypedPhp\Types\Multiple\ObjectsArray;
-use Mcustiel\TypedPhp\Test\Fixtures\Foo;
-use Mcustiel\TypedPhp\Types\StringValue;
 use Mcustiel\TypedPhp\Test\Fixtures\Bar;
+use Mcustiel\TypedPhp\Test\Fixtures\Foo;
+use Mcustiel\TypedPhp\Types\Multiple\ObjectsArray;
+use Mcustiel\TypedPhp\Types\StringValue;
 
+/**
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\ObjectsArray
+ * @covers \Mcustiel\TypedPhp\ArrayValueObject
+ */
 class ObjectsArrayTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -31,7 +36,7 @@ class ObjectsArrayTest extends \PHPUnit_Framework_TestCase
             [\stdClass::class],
             [Foo::class],
             [Bar::class],
-            [StringValue::class]
+            [StringValue::class],
         ];
     }
 
@@ -75,51 +80,62 @@ class ObjectsArrayTest extends \PHPUnit_Framework_TestCase
             ['string'],
             [function () {
             }],
-            [new \stdClass()]
+            [new \stdClass()],
         ];
     }
 
     /**
      * @test
      * @dataProvider invalidClassNamesProvider
-     * @expectedException \InvalidArgumentException
+     *
+     * @param mixed $type
      */
     public function shouldFailWhenGivingAnIncorrectType($type)
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Expected a class name, got ' . (string) $type
+        );
         new ObjectsArray($type, []);
     }
 
     /**
      * @test
      * @dataProvider invalidValuesProvider
+     *
      * @param mixed $value
-     * @expectedException \TypeError
      */
     public function shouldFailWhenCreatingWithInvalidValues($value)
     {
+        $this->expectException(\TypeError::class);
         new ObjectsArray(Foo::class, $value);
     }
 
     /**
      * @test
      * @dataProvider invalidArrayValuesProvider
+     *
      * @param mixed $value
-     * @expectedException \InvalidArgumentException
      */
     public function shouldFailWithInvalidArrays(array $value)
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Trying to save an element of an invalid type in an array of Mcustiel\TypedPhp\Test\Fixtures\Foo'
+        );
         new ObjectsArray(Foo::class, $value);
     }
 
     /**
      * @test
      * @dataProvider validValuesProvider
+     *
      * @param array $array
      */
     public function shouldCreateCorrectlyWithValidArrays(array $array)
     {
         $arrayValue = new ObjectsArray(Foo::class, $array);
-        $this->assertEquals($array, $arrayValue->value());
+        $this->assertSame($array, $arrayValue->value());
     }
 
     /**
@@ -127,8 +143,10 @@ class ObjectsArrayTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldWorkWhenAddingWithValidValue()
     {
-        $array = new ObjectsArray(Foo::class, [new Foo()]);
-        $array[] = new Foo();
-        $this->assertEquals([new Foo(), new Foo()], $array->value());
+        $foo1 = new Foo();
+        $foo2 = new Foo();
+        $array = new ObjectsArray(Foo::class, [$foo1]);
+        $array[] = $foo2;
+        $this->assertSame([$foo1, $foo2], $array->value());
     }
 }

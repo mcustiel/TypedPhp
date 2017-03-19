@@ -1,8 +1,13 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Types\Multiple;
 
 use Mcustiel\TypedPhp\Types\Multiple\IntegerArray;
 
+/**
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\IntegerArray
+ * @covers \Mcustiel\TypedPhp\ArrayValueObject
+ */
 class IntegerArrayTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -47,19 +52,20 @@ class IntegerArrayTest extends \PHPUnit_Framework_TestCase
             ['string'],
             [function () {
             }],
-            [new \stdClass()]
+            [new \stdClass()],
         ];
     }
 
     /**
      * @test
      * @dataProvider validValuesProvider
+     *
      * @param array $array
      */
     public function shouldCreateCorrectlyWithValidArrays(array $array)
     {
         $arrayValue = new IntegerArray($array);
-        $this->assertEquals($array, $arrayValue->value());
+        $this->assertSame($array, $arrayValue->value());
     }
 
     /**
@@ -75,31 +81,39 @@ class IntegerArrayTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @dataProvider invalidValuesProvider
+     *
      * @param mixed $value
-     * @expectedException \TypeError
      */
     public function shouldFailWhenCreatingWithInvalidValues($value)
     {
+        $this->expectException(\TypeError::class);
         new IntegerArray($value);
     }
 
     /**
      * @test
      * @dataProvider invalidArrayValuesProvider
+     *
      * @param mixed $value
-     * @expectedException \InvalidArgumentException
      */
     public function shouldFailWithInvalidArrays(array $value)
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Trying to save an element of an invalid type in an array of integer'
+        );
         new IntegerArray($value);
     }
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
      */
     public function shouldFailIfTryToAddAnInvalidValue()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Trying to save an element of an invalid type in an array of integer'
+        );
         $array = new IntegerArray([1]);
         $array[] = 'potato';
     }

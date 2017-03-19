@@ -1,25 +1,29 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Values;
 
-use Mcustiel\TypedPhp\Types\DoubleValue;
 use Mcustiel\TypedPhp\Traits\Creation\Singleton;
+use Mcustiel\TypedPhp\Types\DoubleValue;
 
-class DoubleCreator extends FlyWeightCreator
+class DoubleCreator extends FlyWeightPrimitiveCreator
 {
     use Singleton;
 
     /**
-     * @param double $value
-     * @return DoubleValue
+     * @param float $value
+     *
+     * @return \Mcustiel\TypedPhp\Types\DoubleValue
      */
     public function getValueObject($value)
     {
         $this->verifyType($value);
+
         return $this->getValueFromCollection($value);
     }
 
     /**
-     * @param double $value
+     * @param float $value
+     *
      * @return \Mcustiel\TypedPhp\Types\DoubleValue
      */
     protected function createValue($value)
@@ -29,13 +33,14 @@ class DoubleCreator extends FlyWeightCreator
 
     /**
      * @param mixed $value
+     *
      * @throws \InvalidArgumentException
      */
     private function verifyType($value)
     {
-        if (!is_double($value)) {
+        if (!is_float($value)) {
             throw new \InvalidArgumentException(
-                'Expected a double value, got: ' . gettype($value)
+                'Expected a double value, got: '.gettype($value)
             );
         }
     }

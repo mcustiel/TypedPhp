@@ -1,8 +1,14 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Types;
 
 use Mcustiel\TypedPhp\Types\IntegerValue;
 
+/**
+ * @covers \Mcustiel\TypedPhp\Types\IntegerValue
+ * @covers \Mcustiel\TypedPhp\PrimitiveValueObject
+ * @covers \Mcustiel\TypedPhp\Traits\Conversion\ToBooleanConverter
+ */
 class IntegerValueTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -11,11 +17,11 @@ class IntegerValueTest extends \PHPUnit_Framework_TestCase
     public function validValuesProvider()
     {
         return [
-            [PHP_INT_MAX],
-            [5],
-            [0],
-            [-5],
-            [PHP_INT_MIN],
+            'max integer' => [PHP_INT_MAX],
+            'positive integer' => [5],
+            'zero' => [0],
+            'negative integer' => [-5],
+            'min integer' => [PHP_INT_MIN],
         ];
     }
 
@@ -25,33 +31,42 @@ class IntegerValueTest extends \PHPUnit_Framework_TestCase
     public function invalidValuesProvider()
     {
         return [
-            [''],
-            [2.0],
-            [2.2],
-            [function () {
+            'string' => [''],
+            'integer as double' => [2.0],
+            'double' => [2.2],
+            'function' => [function () {
             }],
-            [new \stdClass()],
-            [[]],
+            'object' => [new \stdClass()],
+            'array' => [[]],
+            'boolean' => [true],
+            'null' => [null],
         ];
     }
 
     /**
      * @test
      * @dataProvider validValuesProvider
+     *
+     * @param mixed $validValue
      */
     public function shouldAcceptAIntegerAndReturnIt($validValue)
     {
         $value = new IntegerValue($validValue);
-        $this->assertEquals($validValue, $value->value());
+        $this->assertSame($validValue, $value->value());
     }
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
      * @dataProvider invalidValuesProvider
+     *
+     * @param mixed $invalidValue
      */
     public function shouldFailIfAnInvalidValueIsGiven($invalidValue)
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Expected an integer, got ' . gettype($invalidValue)
+        );
         new IntegerValue($invalidValue);
     }
 
@@ -61,7 +76,7 @@ class IntegerValueTest extends \PHPUnit_Framework_TestCase
     public function shouldAddCorrectly()
     {
         $value = new IntegerValue(2);
-        $this->assertEquals(5, $value->add(new IntegerValue(3))->value());
+        $this->assertSame(5, $value->add(new IntegerValue(3))->value());
     }
 
     /**
@@ -70,7 +85,7 @@ class IntegerValueTest extends \PHPUnit_Framework_TestCase
     public function shouldSubstractCorrectly()
     {
         $value = new IntegerValue(3);
-        $this->assertEquals(1, $value->substract(new IntegerValue(2))->value());
+        $this->assertSame(1, $value->substract(new IntegerValue(2))->value());
     }
 
     /**
@@ -79,7 +94,7 @@ class IntegerValueTest extends \PHPUnit_Framework_TestCase
     public function shouldMultiplyCorrectly()
     {
         $value = new IntegerValue(3);
-        $this->assertEquals(12, $value->multiply(new IntegerValue(4))->value());
+        $this->assertSame(12, $value->multiply(new IntegerValue(4))->value());
     }
 
     /**
@@ -88,7 +103,7 @@ class IntegerValueTest extends \PHPUnit_Framework_TestCase
     public function shouldDivideCorrectly()
     {
         $value = new IntegerValue(12);
-        $this->assertEquals(3, $value->divide(new IntegerValue(4))->value());
+        $this->assertSame(3, $value->divide(new IntegerValue(4))->value());
     }
 
     /**
@@ -97,12 +112,14 @@ class IntegerValueTest extends \PHPUnit_Framework_TestCase
     public function shouldGetTheModuleCorrectly()
     {
         $value = new IntegerValue(15);
-        $this->assertEquals(3, $value->module(new IntegerValue(4))->value());
+        $this->assertSame(3, $value->module(new IntegerValue(4))->value());
     }
 
     /**
      * @test
      * @dataProvider validValuesProvider
+     *
+     * @param mixed $validValue
      */
     public function shouldSerializeAndUnserialize($validValue)
     {

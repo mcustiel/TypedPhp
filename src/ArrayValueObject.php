@@ -1,12 +1,8 @@
 <?php
+
 namespace Mcustiel\TypedPhp;
 
-abstract class ArrayValueObject implements
-    Primitive,
-    \ArrayAccess,
-    \IteratorAggregate,
-    \Countable,
-    \Serializable
+abstract class ArrayValueObject implements Primitive, \ArrayAccess, \IteratorAggregate, \Countable, \Serializable
 {
     /**
      * @var \ArrayObject
@@ -31,7 +27,8 @@ abstract class ArrayValueObject implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \ArrayObject::offsetSet()
      */
     public function offsetSet($index, $newval)
@@ -41,7 +38,8 @@ abstract class ArrayValueObject implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \ArrayAccess::offsetExists()
      */
     public function offsetExists($offset)
@@ -50,7 +48,8 @@ abstract class ArrayValueObject implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \ArrayAccess::offsetGet()
      */
     public function offsetGet($offset)
@@ -59,7 +58,8 @@ abstract class ArrayValueObject implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \ArrayAccess::offsetUnset()
      */
     public function offsetUnset($offset)
@@ -68,7 +68,8 @@ abstract class ArrayValueObject implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \IteratorAggregate::getIterator()
      */
     public function getIterator()
@@ -77,7 +78,8 @@ abstract class ArrayValueObject implements
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \Countable::count()
      */
     public function count()
@@ -99,6 +101,11 @@ abstract class ArrayValueObject implements
     public function unserialize($serialized)
     {
         $this->array = unserialize($serialized);
+    }
+
+    public function __toString()
+    {
+        return print_r($this->value(), true);
     }
 
     /**

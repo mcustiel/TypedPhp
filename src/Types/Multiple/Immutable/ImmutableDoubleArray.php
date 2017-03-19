@@ -1,12 +1,11 @@
 <?php
-namespace Mcustiel\TypedPhp\Types\Multiple\Immutable;
 
-use Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutablePrimitivesArray;
+namespace Mcustiel\TypedPhp\Types\Multiple\Immutable;
 
 class ImmutableDoubleArray extends ImmutablePrimitivesArray
 {
     /**
-     * @param double[] $value
+     * @param float[] $value
      */
     public function __construct(array $value = [])
     {

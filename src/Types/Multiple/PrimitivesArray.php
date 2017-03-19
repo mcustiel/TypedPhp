@@ -1,8 +1,9 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Types\Multiple;
 
-use Mcustiel\TypedPhp\Traits\Validation\PhpTypeChecker;
 use Mcustiel\TypedPhp\ArrayValueObject;
+use Mcustiel\TypedPhp\Traits\Validation\PhpTypeChecker;
 
 class PrimitivesArray extends ArrayValueObject
 {
@@ -15,7 +16,7 @@ class PrimitivesArray extends ArrayValueObject
 
     /**
      * @param string $type
-     * @param array $array
+     * @param array  $array
      */
     public function __construct($type, array $array = [])
     {
@@ -27,7 +28,8 @@ class PrimitivesArray extends ArrayValueObject
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \Mcustiel\TypedPhp\ArrayValueObject::validate()
      */
     protected function validate($value)

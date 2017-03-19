@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Types\Multiple\Immutable;
 
 use Mcustiel\TypedPhp\Types\Multiple\PrimitivesArray;
@@ -6,7 +7,8 @@ use Mcustiel\TypedPhp\Types\Multiple\PrimitivesArray;
 class ImmutablePrimitivesArray extends PrimitivesArray
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \ArrayObject::offsetSet()
      */
     public function offsetSet($index, $newval)
@@ -15,7 +17,8 @@ class ImmutablePrimitivesArray extends PrimitivesArray
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \ArrayAccess::offsetUnset()
      */
     public function offsetUnset($offset)

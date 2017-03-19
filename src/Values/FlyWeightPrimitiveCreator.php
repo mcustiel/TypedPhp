@@ -1,9 +1,10 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Values;
 
 use Mcustiel\TypedPhp\Primitive;
 
-abstract class FlyWeightCreator
+abstract class FlyWeightPrimitiveCreator
 {
     /**
      * @var \Mcustiel\TypedPhp\Primitive[]
@@ -17,13 +18,14 @@ abstract class FlyWeightCreator
 
     /**
      * @param Primitive $value
+     *
      * @throws \Mcustiel\TypedPhp\\RuntimeException
      */
     public function removeValue(Primitive $value)
     {
-        $index = (string) $value->value();
+        $index = serialize($value->value());
         if (!isset($this->values[$index])) {
-            throw new \RuntimeException(sprintf('The value %s is not stored', $index));
+            throw new \RuntimeException(sprintf('The value %s is not stored', $value));
         }
         unset($this->values[$index]);
     }
@@ -35,26 +37,30 @@ abstract class FlyWeightCreator
 
     /**
      * @param mixed $value
+     *
      * @return \Mcustiel\TypedPhp\Primitive
      */
     abstract public function getValueObject($value);
 
     /**
      * @param mixed $value
+     *
      * @return \Mcustiel\TypedPhp\Primitive
      */
     abstract protected function createValue($value);
 
     /**
      * @param mixed $value
+     *
      * @return \Mcustiel\TypedPhp\Types\Primitive
      */
     protected function getValueFromCollection($value)
     {
-        $index = (string) $value;
+        $index = serialize($value);
         if (!isset($this->values[$index])) {
             $this->values[$index] = $this->createValue($value);
         }
+
         return $this->values[$index];
     }
 }

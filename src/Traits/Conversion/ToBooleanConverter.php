@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Traits\Conversion;
 
 use Mcustiel\TypedPhp\Types\BooleanValue;
@@ -6,7 +7,7 @@ use Mcustiel\TypedPhp\Types\BooleanValue;
 trait ToBooleanConverter
 {
     /**
-     * @return boolean
+     * @return bool
      */
     public function toBoolean()
     {

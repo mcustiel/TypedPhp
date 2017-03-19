@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Traits\Creation;
 
 trait Singleton
@@ -15,8 +16,9 @@ trait Singleton
     {
         if (self::$instance === null) {
             $class = __CLASS__;
-            self::$instance = new $class;
+            self::$instance = new $class();
         }
+
         return self::$instance;
     }
 }

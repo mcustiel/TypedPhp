@@ -1,9 +1,14 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Values;
 
-use Mcustiel\TypedPhp\Values\BooleanCreator;
 use Mcustiel\TypedPhp\Types\BooleanValue;
+use Mcustiel\TypedPhp\Values\BooleanCreator;
 
+/**
+ * @covers \Mcustiel\TypedPhp\Values\BooleanCreator
+ * @covers \Mcustiel\Traits\Creation\Singleton
+ */
 class BooleanCreatorTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -13,15 +18,17 @@ class BooleanCreatorTest extends \PHPUnit_Framework_TestCase
     {
         $value = BooleanCreator::instance()->getValueObject(true);
         $this->assertInstanceOf(BooleanValue::class, $value);
-        $this->assertSame(true, $value->value());
+        $this->assertTrue($value->value());
     }
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
      */
     public function shouldfailWhenTypeIsNotValid()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected a boolean value, got: string');
+
         BooleanCreator::instance()->getValueObject('fail!');
     }
 
@@ -46,6 +53,17 @@ class BooleanCreatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function shouldClearAllValues()
+    {
+        $value1 = BooleanCreator::instance()->getValueObject(true);
+        BooleanCreator::instance()->clear();
+        $value2 = BooleanCreator::instance()->getValueObject(true);
+        $this->assertFalse($value1 === $value2);
+    }
+
+    /**
+     * @test
+     */
     public function shouldUnsetAValue()
     {
         $value1 = BooleanCreator::instance()->getValueObject(true);
@@ -56,10 +74,11 @@ class BooleanCreatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \RuntimeException
      */
     public function shouldFailIfTheValueIsNotSet()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('The value true is not stored');
         BooleanCreator::instance()->removeValue(new BooleanValue(true));
     }
 }

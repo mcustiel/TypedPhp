@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\TypedPhp;
 
 abstract class PrimitiveValueObject implements Primitive, \Serializable
@@ -26,7 +27,8 @@ abstract class PrimitiveValueObject implements Primitive, \Serializable
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \Mcustiel\TypedPhp\Primitive::get()
      */
     public function value()
@@ -44,6 +46,7 @@ abstract class PrimitiveValueObject implements Primitive, \Serializable
 
     /**
      * @param string $serialized
+     *
      * @return string
      */
     public function unserialize($serialized)
@@ -53,6 +56,7 @@ abstract class PrimitiveValueObject implements Primitive, \Serializable
 
     /**
      * @param mixed $value
+     *
      * @throws \InvalidArgumentException
      */
     abstract protected function validate($value);

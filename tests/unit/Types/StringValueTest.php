@@ -1,10 +1,15 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Types;
 
-use Mcustiel\TypedPhp\Types\StringValue;
 use Mcustiel\TypedPhp\ArrayValueObject;
 use Mcustiel\TypedPhp\Types\Multiple\StringArray;
+use Mcustiel\TypedPhp\Types\StringValue;
 
+/**
+ * @covers \Mcustiel\TypedPhp\Types\StringValue
+ * @covers \Mcustiel\TypedPhp\PrimitiveValueObject
+ */
 class StringValueTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -13,10 +18,11 @@ class StringValueTest extends \PHPUnit_Framework_TestCase
     public function validValuesProvider()
     {
         return [
-            [''],
-            ['abcdefg'],
-            ['1234567'],
-            ['ÄäÜüÖöññññ'],
+            'empty string' => [''],
+            'alpha string' => ['abcdefg'],
+            'numeric string' => ['1234567'],
+            'alphanumeric string' => ['abcdefg1234567'],
+            'non standard chars string' => ['ÄäÜüÖöññññ'],
         ];
     }
 
@@ -26,32 +32,41 @@ class StringValueTest extends \PHPUnit_Framework_TestCase
     public function invalidValuesProvider()
     {
         return [
-            [2.0],
-            [2.2],
-            [function () {
+            'integer' => [2],
+            'double' => [2.2],
+            'function' => [function () {
             }],
-            [new \stdClass()],
-            [[]],
+            'object' => [new \stdClass()],
+            'array' => [[]],
+            'boolean' => [true],
+            'null' => [null],
         ];
     }
 
     /**
      * @test
      * @dataProvider validValuesProvider
+     *
+     * @param mixed $validValue
      */
     public function shouldAcceptAStringAndReturnIt($validValue)
     {
         $value = new StringValue($validValue);
-        $this->assertEquals($validValue, $value->value());
+        $this->assertSame($validValue, $value->value());
     }
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
      * @dataProvider invalidValuesProvider
+     *
+     * @param mixed $invalidValue
      */
     public function shouldFailIfAnInvalidValueIsGiven($invalidValue)
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            sprintf('Expected a string, got %s', gettype($invalidValue))
+        );
         new StringValue($invalidValue);
     }
 
@@ -61,7 +76,7 @@ class StringValueTest extends \PHPUnit_Framework_TestCase
     public function shouldConvertToString()
     {
         $value = new StringValue('15');
-        $this->assertEquals('15', (string) $value);
+        $this->assertSame('15', (string) $value);
     }
 
     /**
@@ -79,7 +94,10 @@ class StringValueTest extends \PHPUnit_Framework_TestCase
     public function shouldReplace()
     {
         $value = new StringValue('potato');
-        $this->assertEquals(new StringValue('papa'), $value->replace($value, new StringValue('papa')));
+        $this->assertSame(
+            (new StringValue('papa'))->value(),
+            $value->replace($value, new StringValue('papa'))->value()
+        );
     }
 
     /**
@@ -88,7 +106,7 @@ class StringValueTest extends \PHPUnit_Framework_TestCase
     public function shouldCompareDirectlyToAString()
     {
         $value = new StringValue('potato');
-        $this->assertEquals('potato', $value);
+        $this->assertSame('potato', (string) $value);
     }
 
     /**
@@ -102,7 +120,7 @@ class StringValueTest extends \PHPUnit_Framework_TestCase
             ->willReturn(['p', 'o', 't', 'a', 't', 'o']);
         $result = StringValue::implode(new StringValue('.'), $array);
         $this->assertInstanceOf(StringValue::class, $result);
-        $this->assertEquals('p.o.t.a.t.o', $result);
+        $this->assertSame('p.o.t.a.t.o', $result->value());
     }
 
     /**
@@ -113,12 +131,14 @@ class StringValueTest extends \PHPUnit_Framework_TestCase
         $value = new StringValue('p.o.t.a.t.o');
         $result = $value->explode(new StringValue('.'));
         $this->assertInstanceOf(StringArray::class, $result);
-        $this->assertEquals(['p', 'o', 't', 'a', 't', 'o'], $result->value());
+        $this->assertSame(['p', 'o', 't', 'a', 't', 'o'], $result->value());
     }
 
     /**
      * @test
      * @dataProvider validValuesProvider
+     *
+     * @param mixed $validValue
      */
     public function shouldSerializeAndUnserialize($validValue)
     {

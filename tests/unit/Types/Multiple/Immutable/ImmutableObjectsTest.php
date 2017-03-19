@@ -1,10 +1,15 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Types\Multiple\Immutable;
 
 use Mcustiel\TypedPhp\Test\Fixtures\Foo;
 use Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutableObjectsArray;
 
-class ImmutableObjectsArrayTest extends ImmutableArrayAsserts
+/**
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutableObjectsArray
+ * @covers \Mcustiel\TypedPhp\ArrayValueObject
+ */
+class ImmutableObjectsTest extends ImmutableArrayAsserts
 {
     /**
      * @test

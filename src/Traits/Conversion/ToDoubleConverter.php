@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Traits\Conversion;
 
 use Mcustiel\TypedPhp\Types\DoubleValue;
@@ -6,11 +7,11 @@ use Mcustiel\TypedPhp\Types\DoubleValue;
 trait ToDoubleConverter
 {
     /**
-     * @return double
+     * @return float
      */
     public function toDouble()
     {
-        return (double) $this->value();
+        return (float) $this->value();
     }
 
     /**
@@ -18,7 +19,7 @@ trait ToDoubleConverter
      */
     public function toDoubleValue()
     {
-        return new DoubleValue((double) $this->value());
+        return new DoubleValue((float) $this->value());
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Traits\Conversion;
 
 use Mcustiel\TypedPhp\Types\IntegerValue;

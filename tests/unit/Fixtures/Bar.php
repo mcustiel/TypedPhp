@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Fixtures;
 
 class Bar extends Foo

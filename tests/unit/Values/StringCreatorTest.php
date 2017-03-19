@@ -1,9 +1,14 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Values;
 
-use Mcustiel\TypedPhp\Values\StringCreator;
 use Mcustiel\TypedPhp\Types\StringValue;
+use Mcustiel\TypedPhp\Values\StringCreator;
 
+/**
+ * @covers \Mcustiel\TypedPhp\Values\StringCreator
+ * @covers \Mcustiel\Traits\Creation\Singleton
+ */
 class StringCreatorTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -18,10 +23,11 @@ class StringCreatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
      */
     public function shouldfailWhenTypeIsNotValid()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected a string value, got: integer');
         StringCreator::instance()->getValueObject(55);
     }
 
@@ -46,20 +52,32 @@ class StringCreatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldUnsetAValue()
+    public function shouldClearAllValues()
     {
-        $value1 = StringCreator::instance()->getValueObject('poato');
-        StringCreator::instance()->removeValue($value1);
-        $value2 = StringCreator::instance()->getValueObject('poato');
+        $value1 = StringCreator::instance()->getValueObject('potato');
+        StringCreator::instance()->clear();
+        $value2 = StringCreator::instance()->getValueObject('potato');
         $this->assertFalse($value1 === $value2);
     }
 
     /**
      * @test
-     * @expectedException \RuntimeException
+     */
+    public function shouldUnsetAValue()
+    {
+        $value1 = StringCreator::instance()->getValueObject('potato');
+        StringCreator::instance()->removeValue($value1);
+        $value2 = StringCreator::instance()->getValueObject('potato');
+        $this->assertFalse($value1 === $value2);
+    }
+
+    /**
+     * @test
      */
     public function shouldFailIfTheValueIsNotSet()
     {
-        StringCreator::instance()->removeValue(new StringValue('poato'));
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('The value potato is not stored');
+        StringCreator::instance()->removeValue(new StringValue('potato'));
     }
 }

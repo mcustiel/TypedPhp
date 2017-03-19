@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Types\Multiple\Immutable;
 
 class ImmutableIntegerArray extends ImmutablePrimitivesArray

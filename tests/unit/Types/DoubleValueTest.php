@@ -1,8 +1,13 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Types;
 
 use Mcustiel\TypedPhp\Types\DoubleValue;
 
+/**
+ * @covers \Mcustiel\TypedPhp\Types\DoubleValue
+ * @covers \Mcustiel\TypedPhp\PrimitiveValueObject
+ */
 class DoubleValueTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -11,9 +16,11 @@ class DoubleValueTest extends \PHPUnit_Framework_TestCase
     public function validValuesProvider()
     {
         return [
-            [5.0],
-            [0.0],
-            [-5.0],
+            'positive double as integer' => [5.0],
+            'positive pure double' => [5.123],
+            'zero as double' => [0.0],
+            'negative double as integer' => [-5.0],
+            'negative pure double' => [-5.5],
         ];
     }
 
@@ -23,32 +30,41 @@ class DoubleValueTest extends \PHPUnit_Framework_TestCase
     public function invalidValuesProvider()
     {
         return [
-            [''],
-            [2],
-            [function () {
+            'integer' => [2],
+            'string' => [''],
+            'function' => [function () {
             }],
-            [new \stdClass()],
-            [[]],
+            'object' => [new \stdClass()],
+            'array' => [[]],
+            'boolean' => [true],
+            'null' => [null],
         ];
     }
 
     /**
      * @test
      * @dataProvider validValuesProvider
+     *
+     * @param mixed $validValue
      */
     public function shouldAcceptADoubleAndReturnIt($validValue)
     {
         $value = new DoubleValue($validValue);
-        $this->assertEquals($validValue, $value->value());
+        $this->assertSame($validValue, $value->value());
     }
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
      * @dataProvider invalidValuesProvider
+     *
+     * @param mixed $invalidValue
      */
     public function shouldFailIfAnInvalidValueIsGiven($invalidValue)
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Expected a double, got ' . gettype($invalidValue)
+        );
         new DoubleValue($invalidValue);
     }
 
@@ -58,7 +74,7 @@ class DoubleValueTest extends \PHPUnit_Framework_TestCase
     public function shouldAddCorrectly()
     {
         $value = new DoubleValue(2.1);
-        $this->assertEquals(5.1, $value->add(new DoubleValue(3.0))->value());
+        $this->assertSame(5.1, $value->add(new DoubleValue(3.0))->value());
     }
 
     /**
@@ -67,7 +83,7 @@ class DoubleValueTest extends \PHPUnit_Framework_TestCase
     public function shouldSubstractCorrectly()
     {
         $value = new DoubleValue(3.0);
-        $this->assertEquals(1.0, $value->substract(new DoubleValue(2.0))->value());
+        $this->assertSame(1.0, $value->substract(new DoubleValue(2.0))->value());
     }
 
     /**
@@ -76,7 +92,7 @@ class DoubleValueTest extends \PHPUnit_Framework_TestCase
     public function shouldMultiplyCorrectly()
     {
         $value = new DoubleValue(3.0);
-        $this->assertEquals(12.6, $value->multiply(new DoubleValue(4.2))->value());
+        $this->assertSame(12.6, $value->multiply(new DoubleValue(4.2))->value());
     }
 
     /**
@@ -85,12 +101,14 @@ class DoubleValueTest extends \PHPUnit_Framework_TestCase
     public function shouldDivideCorrectly()
     {
         $value = new DoubleValue(12.6);
-        $this->assertEquals(3.0, $value->divide(new DoubleValue(4.2))->value());
+        $this->assertSame(3.0, $value->divide(new DoubleValue(4.2))->value());
     }
 
     /**
      * @test
      * @dataProvider validValuesProvider
+     *
+     * @param mixed $validValue
      */
     public function shouldSerializeAndUnserialize($validValue)
     {

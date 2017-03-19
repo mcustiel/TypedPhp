@@ -1,13 +1,16 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Traits\Conversion;
 
-use Mcustiel\TypedPhp\Primitive;
 use Mcustiel\TypedPhp\Traits\Conversion\ToDoubleConverter;
-use Mcustiel\TypedPhp\Types\IntegerValue;
-use Mcustiel\TypedPhp\Types\StringValue;
 use Mcustiel\TypedPhp\Types\BooleanValue;
 use Mcustiel\TypedPhp\Types\DoubleValue;
+use Mcustiel\TypedPhp\Types\IntegerValue;
+use Mcustiel\TypedPhp\Types\StringValue;
 
+/**
+ * @covers \Mcustiel\TypedPhp\Traits\Conversion\ToDoubleConverter
+ */
 class ToDoubleConverterTest extends \PHPUnit_Framework_TestCase
 {
     use ToDoubleConverter;
@@ -37,6 +40,9 @@ class ToDoubleConverterTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @dataProvider objectsAndExpectationsProvider
+     *
+     * @param mixed $testedObject
+     * @param mixed $expectedValue
      */
     public function shouldConvertToDoubleValue($testedObject, $expectedValue)
     {
@@ -49,6 +55,9 @@ class ToDoubleConverterTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @dataProvider objectsAndExpectationsProvider
+     *
+     * @param mixed $testedObject
+     * @param mixed $expectedValue
      */
     public function shouldConvertToDouble($testedObject, $expectedValue)
     {

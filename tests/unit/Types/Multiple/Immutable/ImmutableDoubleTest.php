@@ -1,9 +1,14 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Types\Multiple\Immutable;
 
 use Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutableDoubleArray;
 
-class ImmutableDoubleArrayTest extends ImmutableArrayAsserts
+/**
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutableDoubleArray
+ * @covers \Mcustiel\TypedPhp\ArrayValueObject
+ */
+class ImmutableDoubleTest extends ImmutableArrayAsserts
 {
     /**
      * @test

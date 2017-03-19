@@ -1,8 +1,13 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Types;
 
 use Mcustiel\TypedPhp\Types\BooleanValue;
 
+/**
+ * @covers \Mcustiel\TypedPhp\Types\BooleanValue
+ * @covers \Mcustiel\TypedPhp\PrimitiveValueObject
+ */
 class BooleanValueTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -11,8 +16,8 @@ class BooleanValueTest extends \PHPUnit_Framework_TestCase
     public function validValuesProvider()
     {
         return [
-            [true],
-            [false],
+            'true' => [true],
+            'false' => [false],
         ];
     }
 
@@ -22,34 +27,41 @@ class BooleanValueTest extends \PHPUnit_Framework_TestCase
     public function invalidValuesProvider()
     {
         return [
-            [''],
-            [2.0],
-            [2.2],
-            [function () {
+            'integer' => [2],
+            'double' => [2.2],
+            'function' => [function () {
             }],
-            [new \stdClass()],
-            [[]],
-            [null],
+            'object' => [new \stdClass()],
+            'array' => [[]],
+            'string' => [''],
+            'null' => [null],
         ];
     }
 
     /**
      * @test
      * @dataProvider validValuesProvider
+     *
+     * @param mixed $validValue
      */
     public function shouldAcceptABooleanAndReturnIt($validValue)
     {
         $value = new BooleanValue($validValue);
-        $this->assertEquals($validValue, $value->value());
+        $this->assertSame($validValue, $value->value());
     }
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
      * @dataProvider invalidValuesProvider
+     *
+     * @param mixed $invalidValue
      */
     public function shouldFailIfAnInvalidValueIsGiven($invalidValue)
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Expected a boolean, got ' . gettype($invalidValue)
+        );
         new BooleanValue($invalidValue);
     }
 
@@ -95,6 +107,8 @@ class BooleanValueTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @dataProvider validValuesProvider
+     *
+     * @param mixed $validValue
      */
     public function shouldSerializeAndUnserialize($validValue)
     {

@@ -1,12 +1,16 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Traits\Conversion;
 
 use Mcustiel\TypedPhp\Traits\Conversion\ToStringConverter;
-use Mcustiel\TypedPhp\Types\StringValue;
-use Mcustiel\TypedPhp\Types\IntegerValue;
-use Mcustiel\TypedPhp\Types\DoubleValue;
 use Mcustiel\TypedPhp\Types\BooleanValue;
+use Mcustiel\TypedPhp\Types\DoubleValue;
+use Mcustiel\TypedPhp\Types\IntegerValue;
+use Mcustiel\TypedPhp\Types\StringValue;
 
+/**
+ * @covers \Mcustiel\TypedPhp\Traits\Conversion\ToStringConverter
+ */
 class ToStringConverterTest extends \PHPUnit_Framework_TestCase
 {
     use ToStringConverter;
@@ -15,6 +19,14 @@ class ToStringConverterTest extends \PHPUnit_Framework_TestCase
      * @var \Mcustiel\TypedPhp\Primitive
      */
     private $testedObject;
+
+    /**
+     * @return mixed
+     */
+    public function __toString()
+    {
+        return $this->testedObject->__toString();
+    }
 
     /**
      * @return array
@@ -37,6 +49,9 @@ class ToStringConverterTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @dataProvider objectsAndExpectationsProvider
+     *
+     * @param mixed $testedObject
+     * @param mixed $expectedValue
      */
     public function shouldConvertToStringValue($testedObject, $expectedValue)
     {
@@ -44,13 +59,5 @@ class ToStringConverterTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(StringValue::class, $this->toStringValue());
         $this->assertSame($expectedValue, $this->toStringValue()->value());
-    }
-
-    /**
-     * @return mixed
-     */
-    public function __toString()
-    {
-        return $this->testedObject->__toString();
     }
 }

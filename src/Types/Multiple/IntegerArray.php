@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Types\Multiple;
 
 class IntegerArray extends PrimitivesArray

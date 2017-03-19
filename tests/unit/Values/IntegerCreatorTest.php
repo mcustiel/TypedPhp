@@ -1,9 +1,14 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Values;
 
-use Mcustiel\TypedPhp\Values\IntegerCreator;
 use Mcustiel\TypedPhp\Types\IntegerValue;
+use Mcustiel\TypedPhp\Values\IntegerCreator;
 
+/**
+ * @covers \Mcustiel\TypedPhp\Values\IntegerCreator
+ * @covers \Mcustiel\Traits\Creation\Singleton
+ */
 class IntegerCreatorTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -18,10 +23,11 @@ class IntegerCreatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
      */
     public function shouldfailWhenTypeIsNotValid()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected a integer value, got: string');
         IntegerCreator::instance()->getValueObject('fail!');
     }
 
@@ -46,6 +52,17 @@ class IntegerCreatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function shouldClearAllValues()
+    {
+        $value1 = IntegerCreator::instance()->getValueObject(72);
+        IntegerCreator::instance()->clear();
+        $value2 = IntegerCreator::instance()->getValueObject(72);
+        $this->assertFalse($value1 === $value2);
+    }
+
+    /**
+     * @test
+     */
     public function shouldUnsetAValue()
     {
         $value1 = IntegerCreator::instance()->getValueObject(72);
@@ -56,10 +73,11 @@ class IntegerCreatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \RuntimeException
      */
     public function shouldFailIfTheValueIsNotSet()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('The value 72 is not stored');
         IntegerCreator::instance()->removeValue(new IntegerValue(72));
     }
 }

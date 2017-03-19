@@ -1,8 +1,13 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Types\Multiple;
 
 use Mcustiel\TypedPhp\Types\Multiple\StringArray;
 
+/**
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\StringArray
+ * @covers \Mcustiel\TypedPhp\ArrayValueObject
+ */
 class StringArrayTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -44,19 +49,20 @@ class StringArrayTest extends \PHPUnit_Framework_TestCase
             [true],
             [function () {
             }],
-            [new \stdClass()]
+            [new \stdClass()],
         ];
     }
 
     /**
      * @test
      * @dataProvider validValuesProvider
+     *
      * @param array $array
      */
     public function shouldCreateCorrectlyWithValidArrays(array $array)
     {
         $arrayValue = new StringArray($array);
-        $this->assertEquals($array, $arrayValue->value());
+        $this->assertSame($array, $arrayValue->value());
     }
 
     /**
@@ -66,37 +72,45 @@ class StringArrayTest extends \PHPUnit_Framework_TestCase
     {
         $array = new StringArray(['potato']);
         $array[] = 'tomato';
-        $this->assertEquals(['potato', 'tomato'], $array->value());
+        $this->assertSame(['potato', 'tomato'], $array->value());
     }
 
     /**
      * @test
      * @dataProvider invalidValuesProvider
+     *
      * @param mixed $value
-     * @expectedException \TypeError
      */
     public function shouldFailWhenCreatingWithInvalidValues($value)
     {
+        $this->expectException(\TypeError::class);
         new StringArray($value);
     }
 
     /**
      * @test
      * @dataProvider invalidArrayValuesProvider
+     *
      * @param mixed $value
-     * @expectedException \InvalidArgumentException
      */
     public function shouldFailWithInvalidArrays(array $value)
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Trying to save an element of an invalid type in an array of string'
+        );
         new StringArray($value);
     }
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
      */
     public function shouldFailIfTryToAddAnInvalidValue()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Trying to save an element of an invalid type in an array of string'
+        );
         $array = new StringArray(['potato']);
         $array[] = 1;
     }

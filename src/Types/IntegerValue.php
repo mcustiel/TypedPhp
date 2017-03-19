@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Types;
 
 use Mcustiel\TypedPhp\PrimitiveValueObject;
@@ -12,57 +13,63 @@ class IntegerValue extends PrimitiveValueObject
 
     /**
      * @param \Mcustiel\TypedPhp\Types\IntegerValue $value
+     *
      * @return \Mcustiel\TypedPhp\Types\IntegerValue
      */
     public function add(IntegerValue $value)
     {
-        return new IntegerValue($this->value() + $value->value());
+        return new self($this->value() + $value->value());
     }
 
     /**
      * @param \Mcustiel\TypedPhp\Types\IntegerValue $value
+     *
      * @return \Mcustiel\TypedPhp\Types\IntegerValue
      */
     public function substract(IntegerValue $value)
     {
-        return new IntegerValue($this->value() - $value->value());
+        return new self($this->value() - $value->value());
     }
 
     /**
      * @param \Mcustiel\TypedPhp\Types\IntegerValue $value
+     *
      * @return \Mcustiel\TypedPhp\Types\IntegerValue
      */
     public function multiply(IntegerValue $value)
     {
-        return new IntegerValue($this->value() * $value->value());
+        return new self($this->value() * $value->value());
     }
 
     /**
      * @param \Mcustiel\TypedPhp\Types\IntegerValue $value
+     *
      * @return \Mcustiel\TypedPhp\Types\IntegerValue
      */
     public function divide(IntegerValue $value)
     {
-        return new IntegerValue($this->value() / $value->value());
+        return new self($this->value() / $value->value());
     }
 
     /**
      * @param \Mcustiel\TypedPhp\Types\IntegerValue $value
+     *
      * @return \Mcustiel\TypedPhp\Types\IntegerValue
      */
     public function module(IntegerValue $value)
     {
-        return new IntegerValue($this->value() % $value->value());
+        return new self($this->value() % $value->value());
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @see \Mcustiel\TypedPhp\PrimitiveValueObject::validate()
      */
     protected function validate($value)
     {
         if (!is_int($value)) {
-            throw new \InvalidArgumentException('Expected an integer, got ' . gettype($value));
+            throw new \InvalidArgumentException('Expected an integer, got '.gettype($value));
         }
     }
 }

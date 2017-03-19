@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Types\Multiple\Immutable;
 
 abstract class ImmutableArrayAsserts extends \PHPUnit_Framework_TestCase

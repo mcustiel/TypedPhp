@@ -1,9 +1,14 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Test\Types\Multiple\Immutable;
 
 use Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutableBooleanArray;
 
-class ImmutableBooleanArrayTest extends ImmutableArrayAsserts
+/**
+ * @covers \Mcustiel\TypedPhp\Types\Multiple\Immutable\ImmutableBooleanArray
+ * @covers \Mcustiel\TypedPhp\ArrayValueObject
+ */
+class ImmutableBooleanTest extends ImmutableArrayAsserts
 {
     /**
      * @test

@@ -1,4 +1,5 @@
 <?php
+
 namespace Mcustiel\TypedPhp\Traits\Validation;
 
 trait InstanceOfChecker
@@ -6,7 +7,8 @@ trait InstanceOfChecker
     /**
      * @param object $value
      * @param string $className
-     * @return boolean
+     *
+     * @return bool
      */
     private function isInstanceOf($value, $className)
     {
