@@ -64,7 +64,7 @@ This type allows a collection of instances of a given class. An example to creat
 ```php
 use Mcustiel\TypedPhp\ValueObjects\Multiple\ObjectsArray;
 
-clas Foo 
+class Foo 
 {
     private function bar()
     {

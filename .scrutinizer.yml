@@ -2,10 +2,7 @@ filter:
   paths: [src/*]
   excluded_paths: ["vendor/*", "tests/*"]
 before_commands:
-  - 'composer install --dev --prefer-source'
-filter:
-    excluded_paths:
-        - 'tests/*'
+  - 'composer install --prefer-source'
 checks:
     php: true
 coding_style:
