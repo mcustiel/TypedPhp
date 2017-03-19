@@ -7,6 +7,7 @@ use Mcustiel\TypedPhp\Values\DoubleCreator;
 
 /**
  * @covers \Mcustiel\TypedPhp\Values\DoubleCreator
+ * @covers \Mcustiel\TypedPhp\Values\FlyWeightPrimitiveCreator
  * @covers \Mcustiel\TypedPhp\Traits\Creation\Singleton
  */
 class DoubleCreatorTest extends \PHPUnit_Framework_TestCase
