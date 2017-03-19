@@ -8,7 +8,7 @@ use Mcustiel\TypedPhp\Values\FlyWeightObjectCreator;
 
 /**
  * @covers \Mcustiel\TypedPhp\Values\FlyWeightObjectCreator
- * @covers \Mcustiel\TypedPhp\Traits\Creation\SingletonMcustiel\TypedPhp\Test\Types\
+ * @covers \Mcustiel\TypedPhp\Traits\Creation\Singleton
  */
 class FlyWeightObjectCreatorTest extends \PHPUnit_Framework_TestCase
 {

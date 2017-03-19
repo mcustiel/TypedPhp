@@ -7,7 +7,7 @@ use Mcustiel\TypedPhp\Values\IntegerCreator;
 
 /**
  * @covers \Mcustiel\TypedPhp\Values\IntegerCreator
- * @covers \Mcustiel\TypedPhp\Traits\Creation\SingletonMcustiel\TypedPhp\Test\Types\
+ * @covers \Mcustiel\TypedPhp\Traits\Creation\Singleton
  */
 class IntegerCreatorTest extends \PHPUnit_Framework_TestCase
 {
